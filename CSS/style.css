@@ -1,0 +1,19 @@
+
+h1 {
+	font-weight: lighter;
+}
+
+#middleBlock {
+	position: relative;
+	transform: translateY(25vh);
+}
+
+.withImg {
+	background-image: url("../IMG/bg-img.jpg");
+	background-color: lightgrey;
+	border-radius: 15px;
+}
+
+.none {
+	display: none;
+}
