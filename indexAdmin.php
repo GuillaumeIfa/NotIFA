@@ -65,7 +65,7 @@
 	<div id="tabGestion" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
 		<div class="row p-2">
 			<div class="col-8">
-				<b>Gestion des Utilisateurs :</b>
+				<h3>Gestion des Utilisateurs :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
 				<button class="btn btn-outline-dark">Gérer</button>
@@ -73,27 +73,65 @@
 		</div>
 		<div class="row p-2">
 			<div class="col-8">
-				<b>Gestion des Intervenants :</b>
+				<h3>Gestion des Intervenants :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button class="btn btn-outline-dark">Gérer</button>
+				<button id="gestionInterv" class="btn btn-outline-dark">Gérer</button>
 			</div>
 		</div>
-		<div class="row p-2">
+		<div class="none gestInterv paragraph">
+			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#testModal">Ajouter</button>
+
+		<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ajouter Intervenant:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form id="formInterv">
+						<div class="modal-body" id="modalInterv">
+							<label for="nom">Nom:</label>
+							<input class="float-right" type="text" name="nom" placeholder="Nom"><br>
+							<label for="prenom">Prenom:</label>
+							<input class="float-right" type="text" name="prenom" placeholder="Prenom"><br>
+							<label for="email">Email:</label>
+							<input class="float-right" type="text" name="email" placeholder="Email"><br>
+							<label for="groupes">Groupes</label>
+							<div class="getGroupesInterv"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+							<button type="submit" class="btn btn-primary">Ajouter</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+			<div class="blockquote">
+				<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
+				<h2 class="fail d-flex justify-content-center"></h2>
+				<div id="getInterv"></div> <!--Affichage de la liste des intervenants -->
+			</div>
+		</div>
+		<div class="row p-2"> <!-- Gestion des groupes -->
 			<div class="col-8">
-				<b>Gestion des Groupes :</b>
+				<h3>Gestion des Groupes :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
 				<button id="gestionGroupe" class="btn btn-outline-dark">Gérer</button>
 			</div>
 		</div>
-		<div class="none gestGroup paragraph">
+		<div class="none gestGroup paragraph border-dark">
 			<input type="text" id="nomGroupe">
 			<button class="btn btn-outline-dark" id="addGroupe">Ajouter</button>
 			<div class="blockquote">
 				<h4 class="m-2 p-3"><u>Liste des groupes: </u></h4>
 				<h2 class="fail d-flex justify-content-center"></h2>
-				<div id="getGroupes"></div> <!--Affichage de la liste des groupes -->
+				<div class="getGroupes"></div> <!--Affichage de la liste des groupes -->
 			</div>
 		</div>
 	</div>

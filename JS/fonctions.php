@@ -5,6 +5,9 @@
 		echo "Erreur de connection à la base de données";
 	} else {
 
+		/*****************************
+		* FONCTIONS GESTION GROUPES *
+		****************************/
 
 // Fonction qui ajoute un groupe
 		if (isset($_POST['groupe']) && $_POST['action'] === 'addGroupe') {
@@ -31,17 +34,19 @@
 			$run = mysqli_query($con, $sql);
 
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
-				$groupe = '
-					<p class="pl-2 paragraph">
-						'.$getData['IDGRP'].' => '.$getData['NOM'].'
-						<i class="fas fa-trash-alt pr-2 float-right"></i>
-						<i class="fas fa-edit pr-2 float-right"></i>
-						<button type="button" class="none float-right btn btn-dark mr-2" id="editBtn">ok</button>
-						<input type="text" id="editInput" class="none float-right mr-2" required placeholder="Modifier nom du groupe">
-					</p><hr>';
-				echo $groupe;
+				// $groupe = '
+				// 	<p class="pl-2 paragraph" id="lstGrp-'.$getData['IDGRP'].'">
+				// 		'.$getData['IDGRP'].' => '.$getData['NOM'].'
+				// 		<i class="fas fa-trash-alt pr-2 float-right"></i>
+				// 		<i class="fas fa-edit pr-2 float-right"></i>
+				// 		<button type="button" class="none float-right btn btn-dark mr-2" id="editBtn'.$getData['IDGRP'].'">ok</button>
+				// 		<input type="text" id="editInput'.$getData['IDGRP'].'" class="none float-right mr-2" required placeholder="Modifier nom du groupe">
+				// 	</p><hr>';
+				$tab[] = $getData;
 			}
+			echo json_encode($tab);
 		}
+
 // Fonction qui supprime un groupe
 		if (isset($_POST['id']) && $_POST['action'] === 'delGroupe') {
 			$id = mysqli_escape_string($con, $_POST['id']);
@@ -56,7 +61,39 @@
 			$sql = "UPDATE GROUPES SET NOM = ('$nom') WHERE IDGRP = ".$id."";
 			mysqli_query($con, $sql);
 		}
-	}
+
+		/**********************************
+		* FONCTIONS GESTION INTERVENANTS *
+		********************************/
+// Fonction pour afficher les intervenants
+		if($_GET['action'] === 'getInterv') {
+			$sql = 'SELECT * FROM  USERS WHERE DROITS = "INTERVENANT"';
+			$run = mysqli_query($con, $sql);
+
+			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
+				$tab[] = $getData;
+			}
+			echo json_encode($tab);
+		}
+
+// Fonction pour afficher les groupes de l'intervenant
+		if(isset($_POST['id']) && $_POST['action'] === 'getIntervGroup') {
+			$id = mysqli_escape_string($con, $_POST['id']);
+			$sql = "SELECT GROUPES.NOM FROM GROUPES
+					INNER JOIN INTERGRP ON INTERGRP.IDGRP = GROUPES.IDGRP
+					INNER JOIN USERS ON USERS.IDUSR = INTERGRP.IDUSR
+					WHERE USERS.IDUSR = ".$id."";
+			$run = mysqli_query($con, $sql);
+
+			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
+				$grpInterv = '<div class="btn btn-dark p-2 m-3">'.$getData['NOM'].'</div><span class="btn btn-danger"><i class="fas fa-trash-alt"></i></span><br>';
+				echo $grpInterv;
+			}
+		}
 
 
+
+
+
+	}// Fin du else $con
 ?>
