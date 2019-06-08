@@ -82,7 +82,7 @@
 		<div class="none gestInterv paragraph">
 			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#testModal">Ajouter</button>
 
-		<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade border-dark" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -91,20 +91,22 @@
 						<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form id="formInterv">
+					<form action="./JS/fonctions.php" method="POST">
 						<div class="modal-body" id="modalInterv">
-							<label for="nom">Nom:</label>
-							<input class="float-right" type="text" name="nom" placeholder="Nom"><br>
+							<label for="nomInterv">Nom:</label>
+							<input class="float-right" type="text" id="nomInterv" name="nomInterv" placeholder="Nom" required><br>
 							<label for="prenom">Prenom:</label>
-							<input class="float-right" type="text" name="prenom" placeholder="Prenom"><br>
+							<input class="float-right" type="text" id="prenomInterv" name="prenomInterv" placeholder="Prenom" required><br>
+							<label for="mdp">Mot de passe:</label>
+							<input class="float-right" type="password" id="mdpInterv" name="mdpInterv" placeholder="Mot de passe" required><br>
 							<label for="email">Email:</label>
-							<input class="float-right" type="text" name="email" placeholder="Email"><br>
-							<label for="groupes">Groupes</label>
+							<input class="float-right" type="email" id="emailInterv" name="emailInterv" placeholder="Email" required><br><hr>
+							<label for="groupesInterv">Groupes:</label>
 							<div class="getGroupesInterv"></div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-							<button type="submit" class="btn btn-primary">Ajouter</button>
+							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+							<button type="button" class="btn btn-outline-dark" name="btnAddInterv" id="btnAddInterv" data-dismiss="modal">Ajouter</button>
 						</div>
 					</form>
 				</div>
@@ -114,7 +116,7 @@
 			<div class="blockquote">
 				<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
 				<h2 class="fail d-flex justify-content-center"></h2>
-				<div id="getInterv"></div> <!--Affichage de la liste des intervenants -->
+				<div id="getInterv"></div> <!-- Affichage de la liste des intervenants -->
 			</div>
 		</div>
 		<div class="row p-2"> <!-- Gestion des groupes -->

@@ -34,14 +34,6 @@
 			$run = mysqli_query($con, $sql);
 
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
-				// $groupe = '
-				// 	<p class="pl-2 paragraph" id="lstGrp-'.$getData['IDGRP'].'">
-				// 		'.$getData['IDGRP'].' => '.$getData['NOM'].'
-				// 		<i class="fas fa-trash-alt pr-2 float-right"></i>
-				// 		<i class="fas fa-edit pr-2 float-right"></i>
-				// 		<button type="button" class="none float-right btn btn-dark mr-2" id="editBtn'.$getData['IDGRP'].'">ok</button>
-				// 		<input type="text" id="editInput'.$getData['IDGRP'].'" class="none float-right mr-2" required placeholder="Modifier nom du groupe">
-				// 	</p><hr>';
 				$tab[] = $getData;
 			}
 			echo json_encode($tab);
@@ -65,6 +57,7 @@
 		/**********************************
 		* FONCTIONS GESTION INTERVENANTS *
 		********************************/
+
 // Fonction pour afficher les intervenants
 		if($_GET['action'] === 'getInterv') {
 			$sql = 'SELECT * FROM  USERS WHERE DROITS = "INTERVENANT"';
@@ -79,16 +72,57 @@
 // Fonction pour afficher les groupes de l'intervenant
 		if(isset($_POST['id']) && $_POST['action'] === 'getIntervGroup') {
 			$id = mysqli_escape_string($con, $_POST['id']);
-			$sql = "SELECT GROUPES.NOM FROM GROUPES
+			$sql = "SELECT GROUPES.NOM, USERS.IDUSR FROM GROUPES
 					INNER JOIN INTERGRP ON INTERGRP.IDGRP = GROUPES.IDGRP
 					INNER JOIN USERS ON USERS.IDUSR = INTERGRP.IDUSR
 					WHERE USERS.IDUSR = ".$id."";
 			$run = mysqli_query($con, $sql);
 
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
-				$grpInterv = '<div class="btn btn-dark p-2 m-3">'.$getData['NOM'].'</div><span class="btn btn-danger"><i class="fas fa-trash-alt"></i></span><br>';
-				echo $grpInterv;
+				$tab[] = $getData;
 			}
+			echo json_encode($tab);
+		}
+
+// Fonction pour ajouter un intervenant
+		if(isset($_POST['nom']) && $_POST['action'] === 'addInterv') {
+			
+			$nom = $_POST['nom'];
+			$prenom = $_POST['prenom'];
+			$pseudo = $prenom.'.'.$nom;
+			$email = $_POST['email'];
+			$mdp = $_POST['mdp'];
+			if (isset($_POST['groupes'])) {
+				$groupes = $_POST['groupes'];
+				$rqtInterv = 'SELECT * FROM USERS WHERE EMAIL = "'.$email.'";';
+				$result_query = mysqli_query($con, $rqtInterv);
+				$dbField = mysqli_fetch_assoc($result_query);
+	
+				if ($dbField) {
+					$msg = "Ce mail est déjà utilisé, merci d'en choisir un autre";
+					echo $msg;
+				} else {
+					if ($nom != '' && $prenom != '' && $email != '' && $mdp != ''){
+						$sql = "INSERT INTO USERS (PSEUDO, NOM, PRENOM, EMAIL, MDP, DROITS) VALUES ('$pseudo', '$nom', '$prenom', '$email', '$mdp', 'INTERVENANT')";
+						mysqli_query($con, $sql);
+					}
+				}
+
+				$rqtIntervId = 'SELECT IDUSR FROM USERS WHERE EMAIL = "'.$email.'";';
+				$result_query = mysqli_query($con, $rqtIntervId);
+				$dbField = mysqli_fetch_assoc($result_query);
+				$id = $dbField["IDUSR"];
+				foreach ($groupes as $value) {
+					$rqtAddGrpInterv = "INSERT INTO INTERGRP (IDUSR, IDGRP) VALUES ('$id', '$value')";
+					mysqli_query($con, $rqtAddGrpInterv);
+				}
+				echo "Intervenant(e) ajouté(e) avec succès !";
+			} else {
+				echo "Vous n'avez pas sélectionné(e) de groupe...";
+			}
+			
+
+
 		}
 
 
