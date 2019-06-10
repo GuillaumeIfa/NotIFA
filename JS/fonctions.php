@@ -27,7 +27,7 @@
 				}
 			}
 		}
-	
+
 // Fonction qui affiche les groupes
 		if($_GET['action'] === 'getGroupes') {
 			$sql = "SELECT * FROM  GROUPES";
@@ -72,7 +72,7 @@
 // Fonction pour afficher les groupes de l'intervenant
 		if(isset($_POST['id']) && $_POST['action'] === 'getIntervGroup') {
 			$id = mysqli_escape_string($con, $_POST['id']);
-			$sql = "SELECT GROUPES.NOM, USERS.IDUSR FROM GROUPES
+			$sql = "SELECT GROUPES.NOM, USERS.IDUSR, GROUPES.IDGRP FROM GROUPES
 					INNER JOIN INTERGRP ON INTERGRP.IDGRP = GROUPES.IDGRP
 					INNER JOIN USERS ON USERS.IDUSR = INTERGRP.IDUSR
 					WHERE USERS.IDUSR = ".$id."";
@@ -120,9 +120,15 @@
 			} else {
 				echo "Vous n'avez pas sélectionné(e) de groupe...";
 			}
-			
+		}
 
-
+// Fonction pour supprimer un intervenant d'un groupe
+		if (isset($_POST['idGrp']) && $_POST['action'] === 'delGroupeInterv') {
+			$id = mysqli_escape_string($con, $_POST['id']);
+			$idGrp = mysqli_escape_string($con, $_POST['idGrp']);
+			$rqt = "DELETE FROM INTERGRP WHERE IDGRP = ".$idGrp. " AND IDUSR = ".$id."";
+			mysqli_query($con, $rqt);
+			echo "Intervenant(e) mis(e) à jour !";
 		}
 
 

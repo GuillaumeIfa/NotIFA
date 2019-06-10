@@ -137,7 +137,6 @@ $( function() {
 
 				$(".showGrpInterv").on("click", function() {
 					id = $(this).parent().data('id');
-					console.log(id);
 					getIntervGroup(id);
 				});
 
@@ -172,11 +171,16 @@ $( function() {
 			},
 			success: (datas) => {
 				for (const data of datas) {
+					let idGrp = data.IDGRP;
 					let id = data.IDUSR;
 					let nom = data.NOM;
-					let txt = '<li class="list-group-item mt-3" data-idGrp="' + id + '">'
-						+ nom + '<button type="button" class="btn btn-outline-dark ml-2 float-right"><i class="fas fa-trash-alt"></i></button></li>';
-					$("#grpInterv" + id).append(txt).slideDown();
+					let txt = '<li class="list-group-item mt-3" data-idUsr="' + id + '" data-grpNom="' + nom + '">'
+					+ nom + '<button type="button" class="btn btn-outline-dark float-right" id="delGroupeInterv' + idGrp +'"><i class="fas fa-trash-alt"></i></button></li>';
+					$("#grpInterv" + id).append(txt).fadeIn();
+					$("#delGroupeInterv" + idGrp).on('click', function() {
+						console.log( $('#delGroupeInterv' + idGrp).parent() );
+						delGroupeInterv(idGrp, id);
+					})
 				}
 			}
 		})
@@ -199,7 +203,6 @@ $( function() {
 								+ id + '"></li>';
 					$('.getGroupesInterv').append(txt);
 				}
-
 			}
 		})
 	}
@@ -239,9 +242,24 @@ $( function() {
 		})
 	} // ヽ(･∀･)ﾉ
 
-
-
-
+// Fonction pour supprimer un intevenant d'un groupe
+	function delGroupeInterv(idGrp, id) {
+		$.ajax({
+			url: './JS/fonctions.php?action=delGroupeInterv',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				action: 'delGroupeInterv',
+				idGrp: idGrp,
+				id: id
+			},
+			success: (data) => {
+				alert(data);
+			}
+		})
+		$("#grpInterv" + id).html(''); 
+		getIntervGroup(id);
+	}
 
 	/***********************************
 	* AFFICHAGE ESPACE ADMINISTRATION *
@@ -281,17 +299,15 @@ $( function() {
 // Gestion boutons gestion des intervenants
 	$('#gestionInterv').on('click', () => {
 
-		$('grpInterv').on('click', () => {
-			getIntervGroup();
-		})
+		// $('.grpInterv').on('click', () => {
+		// 	getIntervGroup();
+		// });
 		$('.gestInterv').toggle();
 		$('#btnAddInterv').on('click', (e) => {
 			e.preventDefault();
 			addInterv();
 		})
 	})
-
-
 	
 	getInterv();
 	getGroupesInterv();

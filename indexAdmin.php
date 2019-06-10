@@ -79,7 +79,7 @@
 				<button id="gestionInterv" class="btn btn-outline-dark">Gérer</button>
 			</div>
 		</div>
-		<div class="none gestInterv paragraph">
+		<div class="none gestInterv paragraph grpInterv">
 			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#testModal">Ajouter</button>
 
 		<div class="modal fade border-dark" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,7 +106,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
-							<button type="button" class="btn btn-outline-dark" name="btnAddInterv" id="btnAddInterv" data-dismiss="modal">Ajouter</button>
+							<button type="button" class="btn btn-outline-dark" name="btnAddInterv" id="btnAddInterv">Ajouter</button>
 						</div>
 					</form>
 				</div>
