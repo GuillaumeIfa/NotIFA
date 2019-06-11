@@ -61,7 +61,6 @@
 			<button type="button" id="messagesBtn" class='tabBtn col-sm-3 col-md-3 btn btn-outline-light '>Messages</button>
 		</div>
 	</div>
-
 	<div id="tabGestion" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
 		<div class="row p-2">
 			<div class="col-8">
@@ -80,9 +79,9 @@
 			</div>
 		</div>
 		<div class="none gestInterv paragraph grpInterv">
-			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#testModal">Ajouter</button>
+			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#intervModal">Ajouter</button>
 
-		<div class="modal fade border-dark" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade border-dark" id="intervModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -105,19 +104,44 @@
 							<div class="getGroupesInterv"></div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
 							<button type="button" class="btn btn-outline-dark" name="btnAddInterv" id="btnAddInterv">Ajouter</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-
-			<div class="blockquote">
-				<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
-				<h2 class="fail d-flex justify-content-center"></h2>
-				<div id="getInterv"></div> <!-- Affichage de la liste des intervenants -->
+		
+		<div class="modal fade border-dark" id="addGrpInterv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="ModalLabel">Ajouter l'intervenant dans un groupe:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="./JS/fonctions.php" method="POST">
+						<div class="modal-body" id="modalIntervGrp">
+							<label for="groupesInterv">Groupes:</label>
+							<div class="getGroupesInterv"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
+							<button type="button" class="btn btn-outline-dark" name="btnAddGrpInterv" id="btnAddGrpInterv" data-dismiss="modal">Ajouter</button>
+						</div>
+					</form>
+				</div>
 			</div>
+		</div>
+
+
+
+		<div class="blockquote">
+			<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
+			<h2 class="fail d-flex justify-content-center"></h2>
+			<div id="getInterv"></div> <!-- Affichage de la liste des intervenants -->
+		</div>
 		</div>
 		<div class="row p-2"> <!-- Gestion des groupes -->
 			<div class="col-8">

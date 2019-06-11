@@ -52,8 +52,8 @@
 			$id = mysqli_escape_string($con, $_POST['id']);
 			$sql = "UPDATE GROUPES SET NOM = ('$nom') WHERE IDGRP = ".$id."";
 			mysqli_query($con, $sql);
-		}
-
+		};
+//
 		/**********************************
 		* FONCTIONS GESTION INTERVENANTS *
 		********************************/
@@ -81,7 +81,12 @@
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
 				$tab[] = $getData;
 			}
-			echo json_encode($tab);
+			if(isset($tab)) {
+				echo json_encode($tab);
+			} else {
+				$tab[] = array("NOM" => "pas de groupe" , "IDUSR" => "0","IDGRP" => "0");
+				echo json_encode($tab);
+			}
 		}
 
 // Fonction pour ajouter un intervenant
@@ -129,6 +134,17 @@
 			$rqt = "DELETE FROM INTERGRP WHERE IDGRP = ".$idGrp. " AND IDUSR = ".$id."";
 			mysqli_query($con, $rqt);
 			echo "Intervenant(e) mis(e) à jour !";
+		}
+
+// Fonction pour ajouter un l'intervenant dans des groupes
+		if(isset($_POST['groupes']) && $_POST['action'] === 'addGroupeInterv') {
+			$id = $_POST['id'];
+			$groupes = $_POST['groupes'];
+			foreach ($groupes as $value) {
+				$rqtAddGrpIntervenant = "INSERT INTO INTERGRP (IDUSR, IDGRP) VALUES ('$id', '$value')";
+				mysqli_query($con, $rqtAddGrpIntervenant);
+			}
+			echo "Groupes de l'intervenant mis à jour";
 		}
 
 
