@@ -6,6 +6,7 @@ $( function() {
 
 // Fonction pour afficher les groupes
 	function getGroupes() {
+		$('.grpInterv').hide();
 		$.ajax({
 			url: './JS/fonctions.php?action=getGroupes',
 			type: 'POST',
@@ -157,7 +158,7 @@ $( function() {
 // Fonction pour afficher les groupes d'un intervenant
 	function getIntervGroup(id) { 
 		$("#grpInterv" + id).html('');
-		let addGrpBtn = '<button type="button" class="btn btn-outline-dark mt-3" id="addGrpBtn' + id + '" data-idUsr="' + id +'" data-toggle="modal" data-target="#addGrpInterv">Ajouter un groupe</i></button>';
+		let addGrpBtn = '<button type="button" class="btn btn-outline-dark mt-3" id="addGrpBtn' + id + '" data-idUsr="' + id +'" data-toggle="modal" data-target="#addGrpInterv">+</button>';
 		$("#grpInterv" + id).append(addGrpBtn);
 
 		$.ajax({
@@ -175,9 +176,10 @@ $( function() {
 					let nom = data.NOM;
 					let txt = '<li class="list-group-item mt-3" data-idUsr="' + id + '" data-grpId="' + idGrp + '">'
 						+ nom + '<button type="button" class="btn btn-outline-dark float-right" id="delGroupeInterv' + idGrp +'"><i class="fas fa-trash-alt"></i></button></li>';
-					$("#grpInterv" + id).append(txt).fadeIn();
+					$("#grpInterv" + id).append(txt).show();
 					$("#delGroupeInterv" + idGrp).on('click', function() {
 						delGroupeInterv(idGrp, id);
+						$("#grpInterv" + id).html(''); 
 					})
 				}
 			}
@@ -258,7 +260,7 @@ $( function() {
 				id: id
 			},
 			success: (data) => {
-				//$("#grpInterv" + id).html(''); 
+				$("#grpInterv" + id).html(''); 
 				getIntervGroup(id);
 				alert(data);
 			}
@@ -268,7 +270,7 @@ $( function() {
 // Fonction pour ajouter l'intervenant à un groupe
 	function addGroupeInterv( id ) {
 		$("#grpInterv" + id).html('');
-		$(".grpInterv").hide();
+		//$(".grpInterv").hide();
 		let $groupes = [];
 
 		$('.groupes:checked').each( function() {
