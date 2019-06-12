@@ -6,7 +6,7 @@ $( function() {
 
 // Fonction pour afficher les groupes
 	function getGroupes() {
-		$('.grpInterv').hide();
+		$('.grpInterv').html('');
 		$.ajax({
 			url: './JS/fonctions.php?action=getGroupes',
 			type: 'POST',
@@ -128,28 +128,29 @@ $( function() {
 								'<div id="grpInterv'+ id +'" class="blockquote"></div></li>';
 
 					$('#getInterv').append(txt);
-					//$("#grpInterv" + id).toggle();
-
+					
 				}
+				
+				//$("#grpInterv" + id).toggle();
+				
+				// $('.fa-trash-alt').on("click", function() {
+				// 	id = $(this).parent().data('id');
+				// 	delGroupe(id);
+				// });
+				
+				// $(".fa-edit").on("click", function() {
+				// 	$(this).next().toggle();
+				// 	$(this).next().next().toggle();
+				// 	id = $(this).parent().text().substring(7, 9);
+				// 	$("#editBtnInterv" + id).on("click", function() {
+				// 		nom = $("#editInputInterv" + id).val();
+				// 		editInterv(id, nom);
+				// 	})
+				// });
 
 				$(".showGrpInterv").on("click", function() {
-					id = $(this).parent().data('id');
+					id = $(this).data('id');
 					getIntervGroup(id);
-				});
-
-				$('.fa-trash-alt').on("click", function() {
-					id = $(this).parent().data('id');
-					delGroupe(id);
-				});
-
-				$(".fa-edit").on("click", function() {
-					$(this).next().toggle();
-					$(this).next().next().toggle();
-					id = $(this).parent().text().substring(7, 9);
-					$("#editBtnInterv" + id).on("click", function() {
-						nom = $("#editInputInterv" + id).val();
-						editInterv(id, nom);
-					})
 				});
 			}
 		})
@@ -158,7 +159,10 @@ $( function() {
 // Fonction pour afficher les groupes d'un intervenant
 	function getIntervGroup(id) { 
 		$("#grpInterv" + id).html('');
-		let addGrpBtn = '<button type="button" class="btn btn-outline-dark mt-3" id="addGrpBtn' + id + '" data-idUsr="' + id +'" data-toggle="modal" data-target="#addGrpInterv">+</button>';
+		let addGrpBtn = '<button type="button" class="btn btn-outline-dark mt-3" id="addGrpBtn' 
+						+ id + '" data-idUsr="' 
+						+ id +'" data-toggle="modal" data-target="#addGrpInterv">+</button>';
+ 
 		$("#grpInterv" + id).append(addGrpBtn);
 
 		$.ajax({
@@ -176,14 +180,15 @@ $( function() {
 					let nom = data.NOM;
 					let txt = '<li class="list-group-item mt-3" data-idUsr="' + id + '" data-grpId="' + idGrp + '">'
 						+ nom + '<button type="button" class="btn btn-outline-dark float-right" id="delGroupeInterv' + idGrp +'"><i class="fas fa-trash-alt"></i></button></li>';
-					$("#grpInterv" + id).append(txt).show();
+					$("#grpInterv" + id).append(txt).slideDown();
 					$("#delGroupeInterv" + idGrp).on('click', function() {
-						delGroupeInterv(idGrp, id);
 						$("#grpInterv" + id).html(''); 
+						delGroupeInterv(idGrp, id);
 					})
 				}
 			}
 		})
+
 		$("#btnAddGrpInterv").on('click', function() {
 			// console.log( $("#addGrpBtn" + id).data('idusr') );
 			id = $("#addGrpBtn" + id).data('idusr');
@@ -204,8 +209,9 @@ $( function() {
 					let nom = data.NOM;
 
 					let txt = '<li class="list-group-item">' 
-						+ nom + '<input type="checkbox" class="groupes checkbox float-right" name="groupesInterv[]"  value="' 
+						+ nom + '<input type="checkbox" class="groupes2 checkbox float-right" name="groupesInterv[]"  value="' 
 								+ id + '"></li>';
+					//let txt = '<option value="' + id + '">' + nom + '</option>';
 					$('.getGroupesInterv').append(txt);
 				}
 			}
@@ -249,20 +255,19 @@ $( function() {
 
 // Fonction pour supprimer un intevenant d'un groupe
 	function delGroupeInterv(idGrp, id) {
-		console.log( idGrp, id);
+		//console.log( idGrp, id);
+		//$("#grpInterv" + id).html(''); 
 		$.ajax({
 			url: './JS/fonctions.php?action=delGroupeInterv',
 			type: 'POST',
-			dataType: 'json',
 			data: {
 				action: 'delGroupeInterv',
 				idGrp: idGrp,
 				id: id
 			},
-			success: (data) => {
-				$("#grpInterv" + id).html(''); 
+			success: ( data ) => {
+				alert( data );
 				getIntervGroup(id);
-				alert(data);
 			}
 		})
 	}
@@ -273,7 +278,7 @@ $( function() {
 		//$(".grpInterv").hide();
 		let $groupes = [];
 
-		$('.groupes:checked').each( function() {
+		$('.groupes2:checked').each( function() {
 			$groupes.push( $(this).val() );
 		})
 
@@ -334,13 +339,15 @@ $( function() {
 		// 	getIntervGroup();
 		// });
 		$('.gestInterv').toggle();
+		$('.getInterv').html('');
+		getInterv();
 		$('#btnAddInterv').on('click', (e) => {
 			e.preventDefault();
 			addInterv();
 		})
 	})
 	
-	getInterv();
+	//getInterv();
 	getGroupesInterv();
 
 })

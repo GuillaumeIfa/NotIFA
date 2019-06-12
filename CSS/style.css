@@ -1,4 +1,6 @@
-
+body {
+	background-color: rgb(56, 56, 56)
+}
 
 h1, h3 {
 	font-weight: lighter;
