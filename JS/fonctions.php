@@ -148,7 +148,72 @@
 		}
 
 
+// Fonction qui supprime un intervenant
+	if ( isset($_POST['id']) && $_POST['action'] === 'delInterv' ) {
+		$id = mysqli_escape_string($con, $_POST['id']);
+		$sql = "DELETE FROM USERS WHERE IDUSR = ".$id."";
+		mysqli_query($con, $sql);
+	}
 
+
+//
+		/**********************************
+		* FONCTIONS GESTION UTILISATEURS *
+		********************************/
+
+// Fonction pour afficher les utilisateurs
+	if($_GET['action'] === 'getUsr') {
+		$rqt = 'SELECT * FROM USERS WHERE DROITS = "STAGIAIRE"';
+		$run = mysqli_query($con, $rqt);
+
+		while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) )  {
+			$tab[] = $getData;
+		}
+		echo json_encode($tab);
+	}
+
+// Fonction pour supprimer un utilisateur
+	if ( isset($_POST['id']) && $_POST['action'] === 'delUsr' ) {
+		$id = mysqli_escape_string($con, $_POST['id']);
+		$sql = "DELETE FROM USERS WHERE IDUSR = ".$id."";
+		mysqli_query($con, $sql);
+	}
+
+// Fonction pour ajouter un utilisateur
+	if ( isset($_POST['email']) && $_POST['action'] === 'addUsr') {
+
+		$nom = $_POST['nom'];
+		$prenom = $_POST['prenom'];
+		$pseudo = $prenom. '.' .$nom;
+		$email = $_POST['email'];
+		$mdp = $_POST['mdp'];
+
+		if ( isset($_POST['groupe']) ) {
+
+			$groupe = $_POST['groupe'];
+			$rqtUsr = 'SELECT * FROM USERS WHERE EMAIL = "'.$email.'";';
+			$result_query = mysqli_query($con, $rqtUsr);
+			$dbField = mysqli_fetch_assoc($result_query);
+
+			if ($dbField) {
+				$msg = "Ce mail est déjà utilisé, merci d'en choisir un autre";
+				echo $msg;
+			} else {
+				if ($nom != '' && $prenom != '' && $email != '' && $mdp != '') {
+					$sql = "INSERT INTO USERS (PSEUDO, NOM, PRENOM, EMAIL, MDP, DROITS) VALUES ('$pseudo', '$nom', '$prenom', '$email', '$mdp', 'STAGIAIRE');";
+					echo $sql;
+					mysqli_query($con, $sql);
+				}
+			}
+			
+			$rqtUsrId = 'SELECT IDUSR FROM USERS WHERE EMAIL = "'.$email.'";';
+			$result_query = mysqli_query($con, $rqtUsrId);
+			$dbField = mysqli_fetch_assoc($result_query);
+			$id = $dbField["IDUSR"];
+			$rqtUsrGrp = "INSERT INTO INTREGRP (IDUSR, IDGRP) VALUES ('$id', '$groupe')";
+			mysqli_query($con, $rqtUsrGrp);
+		}
+	}
 
 
 	}// Fin du else $con

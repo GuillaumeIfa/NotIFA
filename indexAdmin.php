@@ -67,9 +67,51 @@
 				<h3>Gestion des Utilisateurs :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button class="btn btn-outline-dark">Gérer</button>
+				<button id="gestionUsr" class="btn btn-outline-dark">Gérer</button>
 			</div>
 		</div>
+		<div class="none gestUsr paragraph grpUsr">
+			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#usrModal">Ajouter</button>
+			<div class="blockquote">
+			<h4 class="m-2 p-3"><u>Liste des utilisateurs: </u></h4>
+			<h2 class="fail d-flex justify-content-center"></h2>
+			<div id="getUsr"></div> <!-- Affichage de la liste des utilisateurs -->
+		</div>
+
+
+		<div class="modal fade border-dark" id="usrModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ajouter Utilisateur:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="./JS/fonctions.php" method="POST">
+						<div class="modal-body" id="modalUsr">
+							<label for="nomInterv">Nom:</label>
+							<input class="float-right" type="text" id="nomUsr" name="nomUsr" placeholder="Nom" required><br>
+							<label for="prenom">Prenom:</label>
+							<input class="float-right" type="text" id="prenomUsr" name="prenomUsr" placeholder="Prenom" required><br>
+							<label for="mdp">Mot de passe:</label>
+							<input class="float-right" type="password" id="mdpUsr" name="mdpUsr" placeholder="Mot de passe" required><br>
+							<label for="email">Email:</label>
+							<input class="float-right" type="email" id="emailUsr" name="emailUsr" placeholder="Email" required><br><hr>
+							<label for="groupesUsr">Groupe:</label>
+							<select class="getGroupesUsr" id="grpUsr"></select>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
+							<button type="button" class="btn btn-outline-dark" name="btnAddUsr" id="btnAddUsr">Ajouter</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
 		<div class="row p-2">
 			<div class="col-8">
 				<h3>Gestion des Intervenants :</h3>
@@ -80,6 +122,11 @@
 		</div>
 		<div class="none gestInterv paragraph grpInterv">
 			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#intervModal">Ajouter</button>
+			<div class="blockquote">
+			<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
+			<h2 class="fail d-flex justify-content-center"></h2>
+			<div id="getInterv"></div> <!-- Affichage de la liste des intervenants -->
+		</div>
 
 		<div class="modal fade border-dark" id="intervModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -135,13 +182,6 @@
 			</div>
 		</div>
 
-
-
-		<div class="blockquote">
-			<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
-			<h2 class="fail d-flex justify-content-center"></h2>
-			<div id="getInterv"></div> <!-- Affichage de la liste des intervenants -->
-		</div>
 		</div>
 		<div class="row p-2"> <!-- Gestion des groupes -->
 			<div class="col-8">
@@ -157,7 +197,7 @@
 			<div class="blockquote">
 				<h4 class="m-2 p-3"><u>Liste des groupes: </u></h4>
 				<h2 class="fail d-flex justify-content-center"></h2>
-				<div class="getGroupes"></div> <!--Affichage de la liste des groupes -->
+				<div id="getGroupes"></div> <!--Affichage de la liste des groupes -->
 			</div>
 		</div>
 	</div>
