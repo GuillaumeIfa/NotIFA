@@ -94,8 +94,6 @@ const Interv = class Interv extends BasicObject {
 
 
 
-$( function() {
-
 	/******************************
 	* FONCTIONS GESTIONS GROUPES *
 	*****************************/
@@ -437,7 +435,7 @@ $( function() {
 			type: 'POST',
 			dataType: 'json',
 			success: (datas) => {
-
+				console.log( datas )
 				for (const data of datas) {
 					let id = data.IDUSR;
 					let pseudo = data.PSEUDO;
@@ -517,14 +515,14 @@ $( function() {
 				groupe: $groupe
 			},
 			success: (data) => {
-				$('#getUsr').html('')
 				$('#nomUsr').html('')
 				$('#prenomUsr').html('')
 				$('#emailUsr').html('')
 				$('#mdp').html('')
+				$('#getUsr').html('')
+				getUsr()
 			}
 		})
-		getUsr()
 	}
 
 	/***********************************
@@ -566,14 +564,15 @@ $( function() {
 	$('#gestionUsr').on('click', () => {
 		$('.gestUsr').toggle();
 	})
-	
+
+
+// INIT
 	getGroupes();
 	getGroupesInterv();
 	getGrpUsr();
 	getInterv();
 	getUsr();
 
-})
 
 /***********
  * INDEX *

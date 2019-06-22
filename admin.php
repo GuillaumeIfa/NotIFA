@@ -3,9 +3,12 @@
 	session_start();
 
 	if ( isset($_SESSION['changePseudo']) ) {
-		echo "<div class=\"blockquote m-3\">
+		echo "<div class=\"alert alert-light alert-dismissible text-dark fade show\">
 					<h1>Félicitation !</h1>
 					<h3 class=\"lead\">Vous avez modifié(e) l'accès administration. <br> Merci de vous reconnecter.</h3>
+					<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+						<span aria-hidden=\"true\">&times;</span>
+					</button>
 				</div>";
 	}
 	session_destroy();
