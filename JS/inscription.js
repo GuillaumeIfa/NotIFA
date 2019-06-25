@@ -6,10 +6,10 @@ $(function() {
 			dataType: 'json',
 			success: (datas) => {
 				for (const data of datas) {
-					let id = data.IDGRP;
-					let nom = data.NOM;
+					let idGrp = data.IDGRP;
+					let nom = data.NOMGRP;
 
-					let txt = '<option value="' + id + '">' + nom + '</option>';
+					let txt = '<option value="' + idGrp + '">' + nom + '</option>';
 					$('#getUserGrp').append(txt);
 				}
 			}

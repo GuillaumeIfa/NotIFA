@@ -111,7 +111,7 @@ const Interv = class Interv extends BasicObject {
 			success: (datas) => {
 				for (const data of datas) {
 					let id = data.IDGRP;
-					let nom = data.NOM;
+					let nom = data.NOMGRP;
 					
 					let txt = '<li class="list-group-item" data-id='
 							+ id + '><b>' 
@@ -285,7 +285,7 @@ const Interv = class Interv extends BasicObject {
 				for (const data of datas) {
 					let idGrp = data.IDGRP;
 					let id = data.IDUSR;
-					let nom = data.NOM;
+					let nom = data.NOMGRP;
 					let txt = '<li class="list-group-item mt-3" data-idUsr="' + id + '" data-grpId="' + idGrp + '">'
 					+ nom + '<button type="button" class="btn btn-outline-dark float-right" id="delGroupeInterv' + idGrp +'"><i class="fas fa-trash-alt"></i></button></li>';
 					$("#grpInterv" + id).append(txt).slideDown();
@@ -313,7 +313,7 @@ const Interv = class Interv extends BasicObject {
 			success: (datas) => {
 				for (const data of datas) {
 					let id = data.IDGRP;
-					let nom = data.NOM;
+					let nom = data.NOMGRP;
 
 					let txt = '<li class="list-group-item">' 
 						+ nom + '<input type="checkbox" class="groupes checkbox float-right" name="groupesInterv[]"  value="' 
@@ -485,10 +485,10 @@ const Interv = class Interv extends BasicObject {
 			dataType: 'json',
 			success: (datas) => {
 				for (const data of datas) {
-					// let id = data.IDGRP;
-					let nom = data.NOM;
+					let id = data.IDGRP;
+					let nom = data.NOMGRP;
 
-					let txt = `<option value="${nom}">${nom}</option>`
+					let txt = `<option value="${id}">${nom}</option>`
 					$('.getGroupesUsr').append(txt);
 				}
 			}

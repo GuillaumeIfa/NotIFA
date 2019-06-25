@@ -8,8 +8,8 @@
 						<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 						<div class="overlay-content">
 							<a href="index.index.php">Accueil</a>
+							<a href="./groupe.php">Groupe</a>
 							<a href="./profile.php">Profil</a>
-							<a href="#">Groupe</a>
 							<a href="#">Contact</a>
 						</div>
 					</div>

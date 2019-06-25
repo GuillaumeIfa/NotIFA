@@ -23,7 +23,7 @@
 			$groupes = $_POST['groupes'];
 			$mdp = $_POST['mdp1'];
 
-			if ( $db ) {
+			if ( $db_handle ) {
 				$rqtMail = 'SELECT EMAIL FROM USERS WHERE EMAIL = "' .$email. '";';
 				$result_query = mysqli_query( $db_handle, $rqtMail );
 				$db_field = mysqli_fetch_assoc( $result_query );
@@ -38,11 +38,17 @@
 						</div>
 					';
 				} else {
-					$rqt = '
+					$rqt = ' 
 						INSERT INTO USERS (PSEUDO, NOM, PRENOM, EMAIL, MDP, DROITS)
 						VALUES ("'.$pseudo.'","'.$nom.'","'.$prenom.'","'.$email.'","'.$mdp.'","STAGIAIRE");
 					';
 					$result_query = mysqli_query( $db_handle, $rqt );
+					$rqtGrp = '
+						INSERT INTO INTERGRP (IDUSR, IDGRP)
+						VALUES ("'.mysqli_insert_id($db_handle).'","'.$groupes.'");
+					';
+					$result_query = mysqli_query( $db_handle, $rqtGrp );
+
 					if ( $result_query ) {
 						echo '
 							<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">

@@ -1,5 +1,5 @@
 <?php
-	include './configure.php';
+	require_once './configure.php';
 
 	$email = '';
 	$mdp = '';
@@ -8,7 +8,7 @@
 		$email = $_POST['email'];
 		$mdp = $_POST['mdp'];
 
-		if ( $db ) {
+		if ( $db_handle ) {
 			$rqtMdp = 'SELECT * FROM USERS WHERE EMAIL = "' .$email. '";';
 
 			$result_query = mysqli_query($db_handle, $rqtMdp);

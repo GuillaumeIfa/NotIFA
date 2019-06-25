@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	if (!isset( $_SESSION['pseudo'] )) {
+	if ( !isset($_SESSION['pseudo']) ) {
 		header('Location: admin.php');
 	}
 
@@ -19,7 +19,7 @@
 		$pseudo = $_POST['pseudo'];
 		$mdp = $_POST['mdp']; 
 		
-		if($db) {
+		if($db_handle) {
 			$rqt = 'UPDATE USERS SET PSEUDO = "'.$pseudo.'", MDP = "'.$mdp.'" WHERE IDUSR = 1';
 			
 			$result_query = mysqli_query($db_handle, $rqt);

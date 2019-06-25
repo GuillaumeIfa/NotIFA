@@ -23,7 +23,7 @@
 		$pseudo = $_POST['pseudo'];
 		$mdp = $_POST['mdp'];
 
-		if($db) {
+		if($db_handle) {
 			$rqtMdp = 'SELECT MDP, IDUSR, PRENOM FROM USERS WHERE PSEUDO = "'.$pseudo.'";';
 
 			$result_query = mysqli_query($db_handle, $rqtMdp);

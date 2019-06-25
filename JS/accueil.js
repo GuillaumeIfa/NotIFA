@@ -8,11 +8,11 @@ function getNouvelles() {
 		paragraph = data.excerpt.rendered
 		if (data._embedded['wp:featuredmedia']) {
 			img = '<a href="'
-				+ link + '" target="_blank"><img class="align-self-start img-thumbnail m-3 mb-0" src="'
+				+ link + '" target="_blank"><img class="img-thumbnail m-3 mb-0" src="'
 				+ data._embedded['wp:featuredmedia']['0'].source_url + '" width="150" /></a>'
 		} else {
 			img = '<a href="'
-				+ link + '" target="_blank"><img class="align-self-start img-thumbnail m-3 mb-0" src="../IMG/ifa_simple.png" width="150" /></a>'
+				+ link + '" target="_blank"><img class="img-thumbnail m-3 mb-0" src="../IMG/ifa_simple.png" width="150" /></a>'
 		}
 
 		let html = '<div class="media border border-warning mb-2 rounded">'
@@ -46,3 +46,4 @@ function openNav() {
 function closeNav() {
 	document.getElementById("myNav").style.width = "0%"
 }
+

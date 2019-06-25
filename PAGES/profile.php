@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	if ( !isset($_SESSION) ) {
+	if ( !isset($_SESSION['email']) ) {
 		header('Location: ../index.tmp.php');
 	}
 ?>
@@ -51,6 +51,7 @@
 
 						<div class="mt-4">
 							<button type="button" id="modUsrBtn" class="btn btn-outline-dark">Modifier</button>
+							<button type="button" onclick="window.location.href='../JS/quit.php'" class="btn btn-outline-dark float-right">Déconnection</button>
 						</div>
 					</div>
 				</form> 

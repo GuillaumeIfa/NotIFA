@@ -1,9 +1,6 @@
 <?php 
-	$con =mysqli_connect('localhost', 'root', 'root', 'AlertIFA');
 
-	if(!$con) {
-		echo "Erreur de connection à la base de données";
-	} else {
+include '../configure.php';
 
 		/*****************************
 		* FONCTIONS GESTION GROUPES *
@@ -11,10 +8,10 @@
 
 // Fonction qui ajoute un groupe
 		if (isset($_POST['groupe']) && $_POST['action'] === 'addGroupe') {
-			$groupe = mysqli_escape_string($con, $_POST['groupe']);
+			$groupe = mysqli_escape_string($db_handle, $_POST['groupe']);
 
-			$rqtNom = 'SELECT * FROM GROUPES WHERE NOM = "'.$_POST['groupe'].'";';
-			$result_query = mysqli_query($con, $rqtNom);
+			$rqtNom = 'SELECT * FROM GROUPES WHERE NOMGRP = "'.$_POST['groupe'].'";';
+			$result_query = mysqli_query($db_handle, $rqtNom);
 			$dbField = mysqli_fetch_assoc($result_query);
 
 			if ($dbField) {
@@ -22,8 +19,8 @@
 				echo $msg;
 			} else {
 				if ($groupe != '') {
-					$sql = "INSERT INTO GROUPES (NOM) VALUES ('$groupe')";
-					mysqli_query($con, $sql);
+					$sql = "INSERT INTO GROUPES (NOMGRP) VALUES ('$groupe')";
+					mysqli_query($db_handle, $sql);
 				}
 			}
 		}
@@ -31,7 +28,7 @@
 // Fonction qui affiche les groupes
 		if($_GET['action'] === 'getGroupes') {
 			$sql = "SELECT * FROM  GROUPES";
-			$run = mysqli_query($con, $sql);
+			$run = mysqli_query($db_handle, $sql);
 
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
 				$tab[] = $getData;
@@ -41,17 +38,17 @@
 
 // Fonction qui supprime un groupe
 		if (isset($_POST['id']) && $_POST['action'] === 'delGroupe') {
-			$id = mysqli_escape_string($con, $_POST['id']);
+			$id = mysqli_escape_string($db_handle, $_POST['id']);
 			$sql = "DELETE FROM GROUPES WHERE IDGRP = ".$id."";
-			mysqli_query($con, $sql);
+			mysqli_query($db_handle, $sql);
 		}
 
 // Fonction pour éditer un groupe
 		if (isset($_POST['id']) && $_POST['action'] === 'editGroupe') {
-			$nom = mysqli_escape_string($con, $_POST['nom']);
-			$id = mysqli_escape_string($con, $_POST['id']);
-			$sql = "UPDATE GROUPES SET NOM = ('$nom') WHERE IDGRP = ".$id."";
-			mysqli_query($con, $sql);
+			$nom = mysqli_escape_string($db_handle, $_POST['nom']);
+			$id = mysqli_escape_string($db_handle, $_POST['id']);
+			$sql = "UPDATE GROUPES SET NOMGRP = ('$nom') WHERE IDGRP = ".$id."";
+			mysqli_query($db_handle, $sql);
 		};
 //
 		/**********************************
@@ -61,7 +58,7 @@
 // Fonction pour afficher les intervenants
 		if($_GET['action'] === 'getInterv') {
 			$sql = 'SELECT * FROM  USERS WHERE DROITS = "INTERVENANT"';
-			$run = mysqli_query($con, $sql);
+			$run = mysqli_query($db_handle, $sql);
 
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
 				$tab[] = $getData;
@@ -71,12 +68,12 @@
 
 // Fonction pour afficher les groupes de l'intervenant
 		if(isset($_POST['id']) && $_POST['action'] === 'getIntervGroup') {
-			$id = mysqli_escape_string($con, $_POST['id']);
-			$sql = "SELECT GROUPES.NOM, USERS.IDUSR, GROUPES.IDGRP FROM GROUPES
+			$id = mysqli_escape_string($db_handle, $_POST['id']);
+			$sql = "SELECT GROUPES.NOMGRP, USERS.IDUSR, GROUPES.IDGRP FROM GROUPES
 					INNER JOIN INTERGRP ON INTERGRP.IDGRP = GROUPES.IDGRP
 					INNER JOIN USERS ON USERS.IDUSR = INTERGRP.IDUSR
 					WHERE USERS.IDUSR = ".$id."";
-			$run = mysqli_query($con, $sql);
+			$run = mysqli_query($db_handle, $sql);
 
 			while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
 				$tab[] = $getData;
@@ -84,7 +81,7 @@
 			if(isset($tab)) {
 				echo json_encode($tab);
 			} else {
-				$tab[] = array("NOM" => "pas de groupe" , "IDUSR" => "0","IDGRP" => "0");
+				$tab[] = array("NOMGRP" => "pas de groupe" , "IDUSR" => "0","IDGRP" => "0");
 				echo json_encode($tab);
 			}
 		}
@@ -100,7 +97,7 @@
 			if (isset($_POST['groupes'])) {
 				$groupes = $_POST['groupes'];
 				$rqtInterv = 'SELECT * FROM USERS WHERE EMAIL = "'.$email.'";';
-				$result_query = mysqli_query($con, $rqtInterv);
+				$result_query = mysqli_query($db_handle, $rqtInterv);
 				$dbField = mysqli_fetch_assoc($result_query);
 	
 				if ($dbField) {
@@ -109,17 +106,17 @@
 				} else {
 					if ($nom != '' && $prenom != '' && $email != '' && $mdp != ''){
 						$sql = "INSERT INTO USERS (PSEUDO, NOM, PRENOM, EMAIL, MDP, DROITS) VALUES ('$pseudo', '$nom', '$prenom', '$email', '$mdp', 'INTERVENANT')";
-						mysqli_query($con, $sql);
+						mysqli_query($db_handle, $sql);
 					}
 				}
 
 				$rqtIntervId = 'SELECT IDUSR FROM USERS WHERE EMAIL = "'.$email.'";';
-				$result_query = mysqli_query($con, $rqtIntervId);
+				$result_query = mysqli_query($db_handle, $rqtIntervId);
 				$dbField = mysqli_fetch_assoc($result_query);
 				$id = $dbField["IDUSR"];
 				foreach ($groupes as $value) {
 					$rqtAddGrpInterv = "INSERT INTO INTERGRP (IDUSR, IDGRP) VALUES ('$id', '$value')";
-					mysqli_query($con, $rqtAddGrpInterv);
+					mysqli_query($db_handle, $rqtAddGrpInterv);
 				}
 				echo "Intervenant(e) ajouté(e) avec succès !";
 			} else {
@@ -129,10 +126,10 @@
 
 // Fonction pour supprimer un intervenant d'un groupe
 		if (isset($_POST['idGrp']) && $_POST['action'] === 'delGroupeInterv') {
-			$id = mysqli_escape_string($con, $_POST['id']);
-			$idGrp = mysqli_escape_string($con, $_POST['idGrp']);
+			$id = mysqli_escape_string($db_handle, $_POST['id']);
+			$idGrp = mysqli_escape_string($db_handle, $_POST['idGrp']);
 			$rqt = "DELETE FROM INTERGRP WHERE IDGRP = ".$idGrp. " AND IDUSR = ".$id."";
-			mysqli_query($con, $rqt);
+			mysqli_query($db_handle, $rqt);
 			echo "Intervenant(e) mis(e) à jour !";
 		}
 
@@ -142,7 +139,7 @@
 			$groupes = $_POST['groupes'];
 			foreach ($groupes as $value) {
 				$rqtAddGrpIntervenant = "INSERT INTO INTERGRP (IDUSR, IDGRP) VALUES ('$id', '$value')";
-				mysqli_query($con, $rqtAddGrpIntervenant);
+				mysqli_query($db_handle, $rqtAddGrpIntervenant);
 			}
 			echo "Groupes de l'intervenant mis à jour";
 		}
@@ -150,9 +147,9 @@
 
 // Fonction qui supprime un intervenant
 	if ( isset($_POST['id']) && $_POST['action'] === 'delInterv' ) {
-		$id = mysqli_escape_string($con, $_POST['id']);
+		$id = mysqli_escape_string($db_handle, $_POST['id']);
 		$sql = "DELETE FROM USERS WHERE IDUSR = ".$id."";
-		mysqli_query($con, $sql);
+		mysqli_query($db_handle, $sql);
 	}
 
 
@@ -164,7 +161,7 @@
 // Fonction pour afficher les utilisateurs
 	if($_GET['action'] === 'getUsr') {
 		$rqt = 'SELECT * FROM USERS WHERE DROITS = "STAGIAIRE"';
-		$run = mysqli_query($con, $rqt);
+		$run = mysqli_query($db_handle, $rqt);
 
 		while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) )  {
 			$tab[] = $getData;
@@ -174,9 +171,9 @@
 
 // Fonction pour supprimer un utilisateur
 	if ( isset($_POST['id']) && $_POST['action'] === 'delUsr' ) {
-		$id = mysqli_escape_string($con, $_POST['id']);
+		$id = mysqli_escape_string($db_handle, $_POST['id']);
 		$sql = "DELETE FROM USERS WHERE IDUSR = ".$id."";
-		mysqli_query($con, $sql);
+		mysqli_query($db_handle, $sql);
 	}
 
 // Fonction pour ajouter un utilisateur
@@ -192,7 +189,7 @@
 
 			$groupe = $_POST['groupe'];
 			$rqtUsr = 'SELECT * FROM USERS WHERE EMAIL = "'.$email.'";';
-			$result_query = mysqli_query($con, $rqtUsr);
+			$result_query = mysqli_query($db_handle, $rqtUsr);
 			$dbField = mysqli_fetch_assoc($result_query);
 
 			if ($dbField) {
@@ -202,19 +199,17 @@
 				if ($nom != '' && $prenom != '' && $email != '' && $mdp != '') {
 					$sql = "INSERT INTO USERS (PSEUDO, NOM, PRENOM, EMAIL, MDP, DROITS) VALUES ('$pseudo', '$nom', '$prenom', '$email', '$mdp', 'STAGIAIRE');";
 					echo $sql;
-					mysqli_query($con, $sql);
+					mysqli_query($db_handle, $sql);
 				}
 			}
 			
 			$rqtUsrId = 'SELECT IDUSR FROM USERS WHERE EMAIL = "'.$email.'";';
-			$result_query = mysqli_query($con, $rqtUsrId);
+			$result_query = mysqli_query($db_handle, $rqtUsrId);
 			$dbField = mysqli_fetch_assoc($result_query);
 			$id = $dbField["IDUSR"];
-			$rqtUsrGrp = "INSERT INTO INTREGRP (IDUSR, IDGRP) VALUES ('$id', '$groupe')";
-			mysqli_query($con, $rqtUsrGrp);
+			$rqtUsrGrp = "INSERT INTO INTERGRP (IDUSR, IDGRP) VALUES ('$id', '$groupe')";
+			echo $rqtUsrGrp;
+			mysqli_query($db_handle, $rqtUsrGrp);
 		}
 	}
-
-
-	}// Fin du else $con
 ?>
