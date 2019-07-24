@@ -6,6 +6,11 @@ h1, h3, h4, .btn {
 	font-weight: lighter;
 }
 
+pre {
+	font-family: inherit;
+	font-weight: lighter;
+}
+
 #middleBlock {
 	position: relative;
 	transform: translateY(25vh);
@@ -47,7 +52,6 @@ h1, h3, h4, .btn {
 footer {
 	background-color: #fc9300;
 }
-
 
 .overlay {
 	height: 100%;

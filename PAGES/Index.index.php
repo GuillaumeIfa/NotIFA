@@ -25,6 +25,7 @@
 		$db_field = mysqli_fetch_assoc($result_query);
 		$_SESSION['groupe'] = $db_field['NOMGRP'];
 		$_SESSION['idGrp'] = $db_field['IDGRP'];
+		$_SESSION['droits'] = $db_field['DROITS'];
 
 		// var_dump( $_SESSION );
 	}

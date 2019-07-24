@@ -44,3 +44,26 @@ $('#modUsrBtn').on('click', function () {
 		}
 	})
 })
+
+// Afficher groupes de l'intervenant dans la page profile
+function getIntGrp( id ) { 
+	$.ajax({
+		url: '../JS/fonctions.php?action=getIntervGroup',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			action: 'getIntervGroup',
+			id: id
+		},
+		success: (datas) => {
+			for (const data of datas) {
+				let idGrp = data.IDGRP;
+				let id = data.IDUSR;
+				let nom = data.NOMGRP;
+				let txt = `<li class="list-group-item" value="${id}">${nom}</li>`
+				$('#grpInt').append( txt )
+			}
+		}
+	})
+}
+

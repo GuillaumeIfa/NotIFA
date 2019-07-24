@@ -3,6 +3,7 @@
 	if ( !isset($_SESSION['email']) ) {
 		header('Location: ../index.tmp.php');
 	}
+	$idInt = $_SESSION['idusr'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,14 +14,25 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="../CSS/style.css">
 	</head>
-	<body class="bg-dark">
+	<body class="bg-dark" onload="getIntGrp('<?php echo $idInt ?>')">
 		<?php include_once './menu.php'; ?>
 		<div class="container text-dark mt-5 mb-5">
 			<div class="card p-5">
 				<form action="" class="form-group">
 					<div>
-						<h1>Profil</h1>
-						<p>Modifier vos informations:</p>
+						<div class="row">
+							<div class="col">
+								<h1>Profil</h1>
+								<p>Modifier vos informations:</p>
+							</div>
+							<div class="col">
+								<?php 
+									if ( $_SESSION['droits'] == 'INTERVENANT') {
+										echo '<label for="grpInt"><h4>Vos groupes:</h4></label><ul class="list-group list-group-horizontal" name="grpInt" id="grpInt"></ul>';
+									}
+								?>
+							</div>
+						</div>
 						<hr>
 						<div class="row">
 							<div class="col">

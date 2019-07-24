@@ -61,6 +61,7 @@
 			<button type="button" id="messagesBtn" class='tabBtn col-sm-3 col-md-3 btn btn-outline-light '>Messages</button>
 		</div>
 	</div>
+
 	<div id="tabGestion" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
 		<div class="row p-2">
 			<div class="col-8">
@@ -77,8 +78,6 @@
 			<h2 class="fail d-flex justify-content-center"></h2>
 			<div id="getUsr"></div> <!-- Affichage de la liste des utilisateurs -->
 		</div>
-
-
 		<div class="modal fade border-dark" id="usrModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -201,6 +200,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="tabMaintenance" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
 		<div class="row p-2">
 			<div class="col-8">
@@ -218,7 +218,24 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="tabMessages" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
+		<div class="row p-2">
+			<div class="col-8">
+				<b>Voir les messages</b>
+			</div>
+			<div class="col-4 d-flex flex-row-reverse">
+				<button id="vuMsg" class="btn btn-outline-dark">Voir</button>
+			</div>
+		</div>
+		<div class="none vuMsg paragraph">
+			<div class="blockquote">
+				<h4 class="m-2 p-3"><u>Tous les messages: </u></h4>
+				<h2 class="fail d-flex justify-content-center"></h2>
+				<div id="getMsgAdmin"></div> <!-- Affichage des messages -->
+			</div>
+		</div>
+
 		<div class="row p-2">
 			<div class="col-8">
 				<b>Gérer les messages</b>

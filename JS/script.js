@@ -94,6 +94,14 @@ const Interv = class Interv extends BasicObject {
 
 
 
+
+
+
+
+
+let testerTab = new Array()
+
+
 	/******************************
 	* FONCTIONS GESTIONS GROUPES *
 	*****************************/
@@ -199,9 +207,11 @@ const Interv = class Interv extends BasicObject {
 		})
 	}
 
+//
 	/**********************************
 	* FONCTIONS GESTION INTERVENANTS *
 	*********************************/
+
 
 // Fonction pour afficher les intervenants
 	function getInterv() {
@@ -420,9 +430,11 @@ const Interv = class Interv extends BasicObject {
 		})
 	}
 
+//
 	/**********************************
 	* FONCTIONS GESTION UTILISATEURS *
 	*********************************/
+
 
 // Fonction pour afficher les utilisateurs
 	function getUsr() {
@@ -435,7 +447,6 @@ const Interv = class Interv extends BasicObject {
 			type: 'POST',
 			dataType: 'json',
 			success: (datas) => {
-				console.log( datas )
 				for (const data of datas) {
 					let id = data.IDUSR;
 					let pseudo = data.PSEUDO;
@@ -525,9 +536,73 @@ const Interv = class Interv extends BasicObject {
 		})
 	}
 
+//
+	/*********************
+	* FONCTIONS MESSAGE *
+	********************/
+
+// Fonction pour afficher les messages envoyés à l'administration
+
+	function getMsgAdmin() {
+		$.ajax({
+			url: './JS/fonctions.php?action=getMsgAdmin',
+			type: 'GET',
+			dataType: 'json',
+			//data: 'getMsgAdmin',
+			success: function ( datas ) {
+				//$('#getMsgAdmin').html('')
+				if ( testerTab.length != datas.length ) {
+					for ( data of datas ) {
+						$('#getMsgAdmin').prepend(
+							`<div class="border border-dark list-group-item list-group-item-action mb-2">
+								<div class="d-flex w-100 justify-content-between bg-dark text-light p-2 mb-3 rounded border border-dark">
+									<h5 class="mx-2">${ data.PSEUDO }</h5><i>groupe: ${ data.NOMGRP }</i>
+									<small>${ data.DATE_FR }</small>
+								</div>
+								<pre class="mb-1">${ data.MSG }</pre>
+								<hr>
+								<div>
+									<button class="btn btn-outline-dark"><i class="fas fa-reply"></i></button>
+									<button class="btn btn-outline-dark delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
+								</div>
+							</div>`)
+					}
+					testerTab = datas;
+					$('.delMsg').on("click", function () {
+						idMsg = $(this).data('idmsg');
+						delMsg( idMsg );
+					});
+					new Notification('AlertIFA', { body: 'Vous avez reçu un nouveau message', icon: '../IMG/ifa_simple.png' });
+				} else {
+					testerTab = datas;
+				}
+			}
+
+		})
+	}
+
+// Fonction pour effacer les messages
+	function delMsg( id ) {
+		$.ajax({
+			url: './JS/fonctions.php?action=delMsg',
+			type: 'POST',
+			data: {
+				action: 'delMsg',
+				id: id 
+			},
+			success: () => {
+				$('#getMsgAdmin').html('');
+				getMsgAdmin();
+			}
+		})
+	}
+
+
+//
 	/***********************************
 	* AFFICHAGE ESPACE ADMINISTRATION *
 	*********************************/
+
 
 // Gestion affichage tab administration
 	$('#tabMaintenance').hide();
@@ -565,6 +640,12 @@ const Interv = class Interv extends BasicObject {
 		$('.gestUsr').toggle();
 	})
 
+// Gestion bouton messages reçus
+	$('#vuMsg').on('click', () => {
+		getMsgAdmin();
+		$('.vuMsg').toggle();
+	})
+
 
 // INIT
 	getGroupes();
@@ -572,6 +653,13 @@ const Interv = class Interv extends BasicObject {
 	getGrpUsr();
 	getInterv();
 	getUsr();
+
+$(function() {
+	getMsgAdmin();
+	itv = setInterval(getMsgAdmin, 1000);
+	Notification.requestPermission();
+})
+
 
 
 /***********
