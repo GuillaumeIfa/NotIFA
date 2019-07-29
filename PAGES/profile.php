@@ -20,7 +20,7 @@
 			<div class="card p-5">
 				<form action="" class="form-group">
 					<div>
-						<div class="row">
+						<div class="row bg-dark rounded text-light shadow">
 							<div class="col">
 								<h1>Profil</h1>
 								<p>Modifier vos informations:</p>

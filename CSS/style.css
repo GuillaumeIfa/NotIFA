@@ -2,18 +2,44 @@ body {
 	font-weight: lighter;
 }
 
-h1, h3, h4, .btn {
+h1, h3, h4 {
 	font-weight: lighter;
+	background: -webkit-linear-gradient( #fabb3f, #f8ad35, #f29027, #ee8122);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
 }
 
 pre {
 	font-family: inherit;
 	font-weight: lighter;
+	font-size: 18px;
+}
+
+.fontIFA {
+	background: -webkit-linear-gradient( #fabb3f, #f8ad35, #f29027, #ee8122);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+#titleMsgAdmin {
+	color: black;
+	background-image: linear-gradient(to right top, #ff8e12, #ffa001, #feb200, #fbc400, #f6d609);
 }
 
 #middleBlock {
 	position: relative;
 	transform: translateY(25vh);
+}
+
+.backIFA {
+	color: black;
+	background-image: repeating-linear-gradient(to right top, #ff8e12, #ffa001, #feb200, #fbc400, #f6d609);
+}
+
+.backBodyIFA {
+	color: black;
+	background-image: repeating-linear-gradient(to right, #ff8e12, #ffa001, #feb200, #fbc400, #f6d609);
 }
 
 .titre {
@@ -25,6 +51,7 @@ pre {
 	background-image: url("../IMG/bg-img.jpg");
 	background-color: lightgrey;
 	border-radius: 15px;
+	border: 1px solid white;
 }
 
 .none {
@@ -49,8 +76,14 @@ pre {
 	padding: 5vh;
 }
 
+.btn:hover {
+	color: black;
+	background-image: linear-gradient(to right top, #ff8e12, #ffa001, #feb200, #fbc400, #f6d609);
+	border: 1px solid black;
+}
+
 footer {
-	background-color: #fc9300;
+	 background-image: linear-gradient(to right top, #ff8e12, #ffa001, #feb200, #fbc400, #f6d609);
 }
 
 .overlay {

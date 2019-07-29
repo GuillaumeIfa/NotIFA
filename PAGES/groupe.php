@@ -20,13 +20,13 @@
 			}
 			#messages {
 				height: 600px;
-				overflow: hidden;
+				overflow: auto;
 			}
 		</style>
 		<?php include_once './menu.php'; ?>
 		<div class="container mb-3">
 			<div class="container row">
-				<h1 class="text-white col-10">Discussion <?php if ( $_SESSION['droits'] == 'STAGIAIRE' ) { echo $_SESSION['groupe']; } ?>
+				<h1 class="fontIFA col-10">Discussion <b><?php if ( $_SESSION['droits'] == 'STAGIAIRE' ) { echo $_SESSION['groupe']; } ?></b>
 				</h1>
 				<div class="custom-control custom-switch col-lg-2">
 					<input type="checkbox" class="custom-control-input" unchecked id="customSwitch1">
@@ -58,8 +58,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="card pb-2 mx-auto">
-				<div class="card-body text-dark">
+			<div class="card pb-2 mx-auto bg-dark border border-light">
+				<div class="card-body">
 					<div id="messages" class="list-group">
 						<!-- la liste des derniers messages ici affichés en JS -->
 					</div>

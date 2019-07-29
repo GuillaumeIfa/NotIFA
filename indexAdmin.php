@@ -50,7 +50,7 @@
 	<link rel="stylesheet" href="./CSS/style.css">
 	<title>Espace Administration</title>
 </head>
-<body>
+<body class="bg-dark">
 	<div class="container withImg shadow-lg mx-auto mt-2">
 		<div>
 			<h1 class="underline text-light text-center pt-3"><u>Espace Administration</u></h1>
@@ -62,17 +62,17 @@
 		</div>
 	</div>
 
-	<div id="tabGestion" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
+	<div id="tabGestion" class="paragraph container card rounded shadow p-2 mt-3 bg-dark border-light">
 		<div class="row p-2">
 			<div class="col-8">
 				<h3>Gestion des Utilisateurs :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button id="gestionUsr" class="btn btn-outline-dark">Gérer</button>
+				<button id="gestionUsr" class="btn btn-outline-light">Gérer</button>
 			</div>
 		</div>
 		<div class="none gestUsr paragraph grpUsr">
-			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#usrModal">Ajouter</button>
+			<button class="btn btn-outline-light" data-toggle="modal" data-target="#usrModal">Ajouter</button>
 			<div class="blockquote">
 			<h4 class="m-2 p-3"><u>Liste des utilisateurs: </u></h4>
 			<h2 class="fail d-flex justify-content-center"></h2>
@@ -116,11 +116,11 @@
 				<h3>Gestion des Intervenants :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button id="gestionInterv" class="btn btn-outline-dark">Gérer</button>
+				<button id="gestionInterv" class="btn btn-outline-light">Gérer</button>
 			</div>
 		</div>
 		<div class="none gestInterv paragraph grpInterv">
-			<button class="btn btn-outline-dark" data-toggle="modal" data-target="#intervModal">Ajouter</button>
+			<button class="btn btn-outline-light" data-toggle="modal" data-target="#intervModal">Ajouter</button>
 			<div class="blockquote">
 			<h4 class="m-2 p-3"><u>Liste des intervenants: </u></h4>
 			<h2 class="fail d-flex justify-content-center"></h2>
@@ -187,12 +187,12 @@
 				<h3>Gestion des Groupes :</h3>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button id="gestionGroupe" class="btn btn-outline-dark">Gérer</button>
+				<button id="gestionGroupe" class="btn btn-outline-light">Gérer</button>
 			</div>
 		</div>
 		<div class="none gestGroup paragraph border-dark">
 			<input type="text" id="nomGroupe">
-			<button class="btn btn-outline-dark" id="addGroupe">Ajouter</button>
+			<button class="btn btn-outline-light" id="addGroupe">Ajouter</button>
 			<div class="blockquote">
 				<h4 class="m-2 p-3"><u>Liste des groupes: </u></h4>
 				<h2 class="fail d-flex justify-content-center"></h2>
@@ -201,47 +201,70 @@
 		</div>
 	</div>
 
-	<div id="tabMaintenance" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
+	<div id="tabMaintenance" class="paragraph container card rounded shadow p-2 mt-3 text-light border-light bg-dark">
 		<div class="row p-2">
 			<div class="col-8">
-				<b>Changer le mot de passe Administrateur</b>
+				<h4>Changer le mot de passe Administrateur</h4>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button id="btnChangeAdmin" class="btn btn-outline-dark">Changer</button>
+				<button id="btnChangeAdmin" class="btn btn-outline-light">Changer</button>
 			</div>
 			<div class="p-2 none modAdminInfo">
 				<form name="form1" action="" method="POST">
 					<input id="pseudo" class="rounded" type="text" name="pseudo" value="<?php echo $pseudo ?>">
 					<input class="rounded" type="password" name="mdp" value="<?php echo $mdp ?>">
-					<button type="submit" id="submitAdmin" name="submitAdmin" class="btn btn-outline-dark">Modifier</button>
+					<button type="submit" id="submitAdmin" name="submitAdmin" class="btn btn-outline-light">Modifier</button>
 				</form>
 			</div>
 		</div>
 	</div>
 
-	<div id="tabMessages" class="paragraph container card rounded shadow p-2 mt-3 border-dark">
+	<div id="tabMessages" class="paragraph container card rounded shadow p-2 mt-3 border-light bg-dark">
 		<div class="row p-2">
 			<div class="col-8">
-				<b>Voir les messages</b>
+				<h4>Voir les messages</h4>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button id="vuMsg" class="btn btn-outline-dark">Voir</button>
+				<button id="vuMsg" class="btn btn-outline-light">Voir</button>
 			</div>
 		</div>
 		<div class="none vuMsg paragraph">
 			<div class="blockquote">
 				<h4 class="m-2 p-3"><u>Tous les messages: </u></h4>
 				<h2 class="fail d-flex justify-content-center"></h2>
-				<div id="getMsgAdmin"></div> <!-- Affichage des messages -->
+				<div id="getMsgAdmin">
+					<!-- Affichage des messages -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de la réponse admin -->
+		<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Réponse:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<textarea class="form-control" id="replyAdmin" rows="3"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-dark" data-dismiss="modal">Annuler</button>
+						<button type="button" class="btn btn-outline-dark" data-dismiss="modal" id="replyAdminBtn">Répondre</button>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row p-2">
 			<div class="col-8">
-				<b>Gérer les messages</b>
+				<h4>Gérer les messages</h4>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button class="btn btn-outline-dark">Gérer</button>
+				<button class="btn btn-outline-light">Gérer</button>
 			</div>
 		</div>
 	</div>

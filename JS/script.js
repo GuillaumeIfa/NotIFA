@@ -92,13 +92,6 @@ const Interv = class Interv extends BasicObject {
 
 
 
-
-
-
-
-
-
-
 let testerTab = new Array()
 
 
@@ -562,12 +555,15 @@ let testerTab = new Array()
 								<pre class="mb-1">${ data.MSG }</pre>
 								<hr>
 								<div>
-									<button class="btn btn-outline-dark"><i class="fas fa-reply"></i></button>
+									<button class="btn btn-outline-dark replyMsg" data-toggle="modal" data-target="#replyModal" data-idusr = "${ data.IDUSR }"><i class="fas fa-reply"></i></button>
 									<button class="btn btn-outline-dark delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
 								</div>
 							</div>`)
 					}
 					testerTab = datas;
+					$('.replyMsg').on("click", function () {
+						idUsr = $(this).data('idusr');
+					});
 					$('.delMsg').on("click", function () {
 						idMsg = $(this).data('idmsg');
 						delMsg( idMsg );
@@ -591,8 +587,34 @@ let testerTab = new Array()
 				id: id 
 			},
 			success: () => {
-				$('#getMsgAdmin').html('');
+				$('#msgFromAdmin').html('');
 				getMsgAdmin();
+			}
+		})
+	}
+
+// Fonction pour que l'administration réponde à un message
+	function replyMsgAdmin( id ) {
+		let $msgAdmin = $('#replyAdmin').val();
+		$.ajax({
+			url: './JS/fonctions.php?action=replyAdmin',
+			type: 'POST',
+			data: {
+				action: 'replyAdmin',
+				msg: $msgAdmin,
+				id: id
+			},
+			success: () => {
+				$('#replyAdmin').val('');
+				txt = '<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">'
+							+ '<i class="fas fa-thumbs-up pr-2"></i></i>Votre message a bien été envoyé'
+							+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+								+ '<span aria-hidden="true">&times;</span>'
+							+ '</button>'
+						+ '</div>'
+
+				$('body').prepend(txt)
+
 			}
 		})
 	}
@@ -642,10 +664,13 @@ let testerTab = new Array()
 
 // Gestion bouton messages reçus
 	$('#vuMsg').on('click', () => {
-		getMsgAdmin();
 		$('.vuMsg').toggle();
 	})
 
+// Bouton repondre à l'utilisateur
+	$('#replyAdminBtn').on('click', () => {
+		replyMsgAdmin( idUsr )
+	})
 
 // INIT
 	getGroupes();
@@ -655,7 +680,6 @@ let testerTab = new Array()
 	getUsr();
 
 $(function() {
-	getMsgAdmin();
 	itv = setInterval(getMsgAdmin, 1000);
 	Notification.requestPermission();
 })

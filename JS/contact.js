@@ -1,3 +1,5 @@
+let testerTab = new Array()
+
 function openNav() {
 	document.getElementById("myNav").style.width = "100%"
 }
@@ -30,6 +32,63 @@ function closeNav() {
 		$('#formAdmin').val('')
 	}
 
+// Fonction pour afficher les messages de l'utilisateur venant de l'administrateur
+	function msgFromAdmin() {
+		$.ajax({
+			url: '../JS/contactFonction.php?action=getMsgFromAdmin',
+			type: 'GET',
+			dataType: 'json',
+			success: function( datas ) {
+				$('#loader').show();
+				if ( testerTab.length != datas.length ) {
+					for( data of datas ) {
+						$('#msgFromAdmin').prepend(
+							`<div class="bg-dark border border-light text-light list-group-item list-group-item-action mb-2">
+								<div class="d-flex w-100 justify-content-between pt-2 pr-1 mb-2 rounded border border-dark backIFA">
+									<h5 class="mx-2">Administration</h5>
+									<small>${ data.DATE_FR }</small>
+								</div>
+								<pre class="mb-1 text-light">${ data.MSG }</pre>
+								<div class="float-right">
+									<button class="btn btn-outline-light delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
+								</div>
+							</div>`)
+					}
+					$('.delMsg').on('click', function() {
+						idMsg = $(this).data('idmsg');
+						delMsg( idMsg );
+					})
+					testerTab = datas;
+				} else {
+					testerTab = datas;
+				}
+			},
+			complete: function() {
+				$('#loader').hide();
+			}
+		})
+	}
+
+// Fonction pour supprimer un message
+	function delMsg( id ) {
+		$.ajax({
+			url: '../JS/contactFonction.php?action=delMsg',
+			type: 'POST',
+			data: {
+				action: 'delMsg',
+				id: id 
+			},
+			success: () => {
+				$('#msgFromAdmin').html('');
+				msgFromAdmin();
+			}
+		})
+	}
+
+
 $('#btnAdmin').on('click', function() {
 	msgAdmin()
 })
+
+itv = setInterval(msgFromAdmin, 1000); 
+

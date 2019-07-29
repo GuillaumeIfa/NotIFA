@@ -21,14 +21,13 @@
 		<div class="m-0 menu">
 			<img src="./IMG/Logo-IFA-1.png" class="logoIfa mx-auto d-block">
 		</div>
-		<div class="container text-dark">
-			<div class="card p-5 m-5-lg mt-5">
+		<div class="container text-light">
+			<div class="card p-5 m-5-lg mt-5 bg-dark border border-light rounded">
 				<form action="" method="POST" class="form-group">
 					<div>
 						<h1>Connexion</h1>
 						<p>Merci d'entrer votre adresse mail pour vous connecter</p>
-						<hr>
-		
+						<hr class="bg-light">
 						<i class="fas fa-address-card"></i>
 						<label for="email" class="pt-2"><b>Email</b></label>
 						<input type="text" placeholder="Email" name="email" required class="form-control">
@@ -39,7 +38,7 @@
 		
 						<div class="mt-4">
 							<button type="button" class="btn btn-outline-dark float-right" onclick="window.location.href='./PAGES/inscription.php'">Inscription</button>
-							<button type="submit" name="submitLogin" class="btn btn-outline-dark">Connexion</button>
+							<button type="submit" name="submitLogin" class="btn btn-outline-light">Connexion</button>
 						</div>
 					</div>
 				</form>

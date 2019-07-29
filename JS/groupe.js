@@ -127,9 +127,9 @@ var itv
 				if ( testerTab.length != datas.length ) {
 					$('#messages').html('')
 					for( data of datas ) {
-						$('#messages').append(`<div class="list-group-item list-group-item-action">
+						$('#messages').append(`<div class="list-group-item list-group-item-action bg-dark text-light border-warning">
 												<div class="d-flex w-100 justify-content-between">
-													<h5 class="mb-1">${ data.PSEUDO }</h5>
+													<h5 class="mb-1 fontIFA">${ data.PSEUDO }</h5>
 													<small>${ data.DATE_FR }</small>
 												</div>
 												<p class="mb-1">${ data.MSG }</p>

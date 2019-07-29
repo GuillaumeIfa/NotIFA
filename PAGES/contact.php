@@ -16,11 +16,16 @@
 		<?php include_once './menu.php'; ?>
 		<div class="container">
 			<h1 class="text-light mb-3">Informations</h1>
-			<div class="card mb-3">
-				<div class="card-body">
+			<div class="card mb-3 p-3 bg-dark border border-light" id="msgFromAdmin">
+			<div class="text-center text-light">
+				<div class="spinner-border m-5 p-3" id="loader">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+<!-- 				<div class="card-body">
 					<h5 class="card-title">Titre</h5>
 					<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, consectetur illum, facilis qui dignissimos iusto, repellendus ratione quis sapiente, animi accusamus eius quisquam suscipit officiis nihil commodi laborum recusandae dolore.</p>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<hr class="bg-light m-5">

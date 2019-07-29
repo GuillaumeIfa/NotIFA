@@ -240,5 +240,15 @@ include '../configure.php';
 		mysqli_query($db_handle, $rqt);
 	}
 
+// Fonction pour répondre à l'utilisateur
+	if ( isset($_POST['action']) && $_POST['action'] == 'replyAdmin') {
+		$msg  = mysqli_escape_string($db_handle, $_POST['msg']);
+		$idUsr = $_POST['id'];
+
+		$rqt = 'INSERT INTO MESSAGE (MSG, IDUSR, CIBLE, IDCBL)
+				VALUES ("'.$msg.'", 1, "ADMINISTRATION", "'.$idUsr.'");';
+
+		mysqli_query($db_handle, $rqt);
+	}
 
 ?>
