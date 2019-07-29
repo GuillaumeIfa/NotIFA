@@ -619,6 +619,43 @@ let testerTab = new Array()
 		})
 	}
 
+// Recherche dans les messages 
+	function searchMsgAdmin() {
+		let $search = $('#inputMsgSearchAdmin').val();
+		$('#getSearchAdmin').html('');
+		$.ajax({
+			url: './JS/fonctions.php?action=searchMsgAdmin',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				search: $search,
+				action: 'searchMsgAdmin'
+			},
+			success: function( datas ) {
+				if( datas.MSG != "Pas de résultat..." ) {
+					console.log( 'IF' )
+					for ( data of datas ) {
+						$('#getSearchAdmin').prepend(
+							`<div class="border border-dark rounded list-group-item list-group-item-action mb-2">
+								<div class="d-flex w-100 justify-content-between bg-dark text-light p-2 mb-3 rounded border border-dark">
+									<h5 class="mx-2">${ data.PSEUDO }</h5><i>groupe: ${ data.NOMGRP }</i>
+									<small>${ data.DATE_FR }</small>
+								</div>
+								<pre class="mb-1">${ data.MSG }</pre>
+								<hr>
+								<div>
+									<button class="btn btn-outline-dark replyMsg" data-toggle="modal" data-target="#replyModal" data-idusr = "${ data.IDUSR }"><i class="fas fa-reply"></i></button>
+									<button class="btn btn-outline-dark delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
+								</div>
+							</div>`);
+					}
+				} else {
+					console.log( 'ELSE' )
+					$('#getSearchAdmin').prepend(`<div class="card bg-dark col text-center p-3 border-light"><h4>Pas de résultat...</h4></div>`);
+				}
+			}
+		})
+	}
 
 //
 	/***********************************
@@ -671,6 +708,12 @@ let testerTab = new Array()
 	$('#replyAdminBtn').on('click', () => {
 		replyMsgAdmin( idUsr )
 	})
+
+// Bouton de recherche dens les messages
+	$('#searchBtnMsgAdmin').on('click', () => {
+		searchMsgAdmin();
+	})
+
 
 // INIT
 	getGroupes();

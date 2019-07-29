@@ -261,11 +261,19 @@
 
 		<div class="row p-2">
 			<div class="col-8">
-				<h4>Gérer les messages</h4>
+				<h4>Chercher dans les messages</h4>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
-				<button class="btn btn-outline-light">Gérer</button>
+				<div class="input-group mb-3">
+					<input id="inputMsgSearchAdmin"t ype="text" class="form-control" placeholder="Recherche">
+					<div class="input-group-append">
+						<button id="searchBtnMsgAdmin" class="btn btn-outline-light">Rechercher</button>
+					</div>
+				</div>
 			</div>
+		</div>
+		<div id="getSearchAdmin" class="row">
+			<!-- Affichage des messages -->
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
