@@ -6,7 +6,7 @@
 
 	if ( isset($_POST['submitLogin']) ) {
 		$email = $_POST['email'];
-		$mdp = $_POST['mdp'];
+		$mdp = sha1($_POST['mdp']);
 
 		if ( $db_handle ) {
 			$rqtMdp = 'SELECT * FROM USERS WHERE EMAIL = "' .$email. '";';
@@ -18,7 +18,6 @@
 				if ( $db_field['MDP'] == $mdp ) {
 					session_start();
 					$_SESSION['email'] = $_POST['email'];
-					$_SESSION['mdp'] = $_POST['mdp'];
 					$_SESSION['idusr'] = $db_field['IDUSR'];
 					$_SESSION['prenom'] = $db_field['PRENOM'];
 					$_SESSION['nom'] = $db_field['NOM'];

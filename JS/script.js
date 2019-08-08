@@ -3,7 +3,7 @@ const BasicObject = class BasicObject {}
 const BasicList = class BasicList {}
 
 const Group = class Group extends BasicObject {
-	
+
 	constructor (group = {}) {
 		this.id = group.id || undefined
 		this.name = group.name || undefined
@@ -87,12 +87,8 @@ const Interv = class Interv extends BasicObject {
 }
 
 
-
-
-
-
-
-let testerTab = new Array()
+let testerTab = new Array();
+let windows_focus = false;
 
 
 	/******************************
@@ -534,6 +530,14 @@ let testerTab = new Array()
 	* FONCTIONS MESSAGE *
 	********************/
 
+// Fonction pour savoir si la fenêtre est focus()
+	$(window).focus(function() {
+		window_focus = true;
+	})
+		.blur(function() {
+			window_focus = false;
+		})
+
 // Fonction pour afficher les messages envoyés à l'administration
 
 	function getMsgAdmin() {
@@ -543,8 +547,8 @@ let testerTab = new Array()
 			dataType: 'json',
 			//data: 'getMsgAdmin',
 			success: function ( datas ) {
-				//$('#getMsgAdmin').html('')
 				if ( testerTab.length != datas.length ) {
+					$('#getMsgAdmin').html('');
 					for ( data of datas ) {
 						$('#getMsgAdmin').prepend(
 							`<div class="border border-dark list-group-item list-group-item-action mb-2">
@@ -568,7 +572,9 @@ let testerTab = new Array()
 						idMsg = $(this).data('idmsg');
 						delMsg( idMsg );
 					});
-					new Notification('AlertIFA', { body: 'Vous avez reçu un nouveau message', icon: '../IMG/ifa_simple.png' });
+					if( !window_focus ) {
+						new Notification('AlertIFA', { body: 'Vous avez reçu un nouveau message dans groupe !', icon: '../IMG/ifa_simple.png' });
+					};
 				} else {
 					testerTab = datas;
 				}
@@ -702,6 +708,8 @@ let testerTab = new Array()
 // Gestion bouton messages reçus
 	$('#vuMsg').on('click', () => {
 		$('.vuMsg').toggle();
+		itv = setInterval(getMsgAdmin, 1000);
+		Notification.requestPermission();
 	})
 
 // Bouton repondre à l'utilisateur
@@ -722,10 +730,6 @@ let testerTab = new Array()
 	getInterv();
 	getUsr();
 
-$(function() {
-	itv = setInterval(getMsgAdmin, 1000);
-	Notification.requestPermission();
-})
 
 
 

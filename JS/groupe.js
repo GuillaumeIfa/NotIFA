@@ -2,7 +2,16 @@
 let stat = false
 let testerTab = new Array()
 var itv
+var window_focus
 //var sound = 'plop'
+
+// Fonction pour savoir si la fenêtre est focus()
+	$(window).focus(function() {
+		window_focus = true;
+	})
+		.blur(function() {
+			window_focus = false;
+		})
 
 
 // Partie gestion du son
@@ -139,7 +148,9 @@ var itv
 					let scroll = $('#messages')[0].scrollHeight;
 					$('#messages').scrollTop(scroll);
 					// playSound();
-					new Notification('AlertIFA', { body: 'Vous avez reçu un nouveau message dans groupe !', icon: '../IMG/ifa_simple.png' });
+					if( !window_focus ) {
+						new Notification('AlertIFA', { body: 'Vous avez reçu un nouveau message dans groupe !', icon: '../IMG/ifa_simple.png' });
+					}
 				} else {
 					testerTab = datas
 				}
@@ -160,7 +171,7 @@ var itv
 				success: function( datas ) {
 					$('#messages').html('')
 					if ( !datas ) {
-						$('#messages').append(`Vous n'avez pas encore de dialogué avec cette personne`)
+						$('#messages').append(`<h4><i>Vous n'avez pas encore dialogué avec cette personne.</i></h4>`)
 					} else {
 						for( data of datas ) {
 							$('#messages').append(`<div class="list-group-item list-group-item-action">

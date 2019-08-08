@@ -1,8 +1,5 @@
 <?php 
-	session_start();
-	if ( !isset($_SESSION['email']) ) {
-		header('Location: ../index.tmp.php');
-	}
+	include_once '../JS/verifConnect.php';
 	$idInt = $_SESSION['idusr'];
 ?>
 <!DOCTYPE html>
@@ -57,13 +54,13 @@
 						<label for="email" class="pt-2"><span class="titre">Email</span></label>
 						<input type="text" value="<?php echo $_SESSION['email'] ?>" id="email" required class="form-control">
 
-						<i class="fas fa-unlock-alt"></i>
+<!-- 						<i class="fas fa-unlock-alt"></i>
 						<label for="mdp" class="pt-2"><span class="titre">Mot de Passe</span></label>
-						<input type="password" value="<?php echo $_SESSION['mdp'] ?>" id="mdp" required class="form-control">
+						<input require type="password" value="" id="mdp" required class="form-control"> -->
 
 						<div class="mt-4">
 							<button type="button" id="modUsrBtn" class="btn btn-outline-dark">Modifier</button>
-							<button type="button" onclick="window.location.href='../JS/quit.php'" class="btn btn-outline-dark float-right">Déconnection</button>
+							<button type="button" onclick="window.location.href='../JS/quit.php'" class="btn btn-outline-dark float-right">Déconnexion</button>
 						</div>
 					</div>
 				</form> 

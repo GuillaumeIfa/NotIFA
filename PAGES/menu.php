@@ -8,9 +8,9 @@
 						<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 						<div class="overlay-content">
 							<a href="index.index.php">Accueil</a>
-							<a href="./groupe.php">Groupe</a>
-							<a href="./profile.php">Profil</a>
-							<a href="./contact.php">Contact</a>
+							<a href="./groupe.php">Discussion</a>
+							<a href="./contact.php">Contact Administration</a>
+							<a href="./profile.php">Modifier Profil</a>
 							<a href="../JS/quit.php">Déconnection</a>
 						</div>
 					</div>

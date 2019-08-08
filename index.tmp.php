@@ -37,7 +37,7 @@
 						<input type="password" placeholder="Mot de Passe" name="mdp" required class="form-control">
 		
 						<div class="mt-4">
-							<button type="button" class="btn btn-outline-dark float-right" onclick="window.location.href='./PAGES/inscription.php'">Inscription</button>
+							<button type="button" class="btn btn-outline-light float-right" onclick="window.location.href='./PAGES/inscription.php'">Inscription</button>
 							<button type="submit" name="submitLogin" class="btn btn-outline-light">Connexion</button>
 						</div>
 					</div>
@@ -56,7 +56,7 @@
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="./JS/script.js"></script>
-	</body>
+<!-- 		<script src="./JS/script.js"></script>
+ -->	</body>
 
 </html>

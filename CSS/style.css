@@ -3,7 +3,7 @@ body {
 }
 
 h1, h3, h4 {
-	font-weight: lighter;
+	/*font-weight: lighter;*/
 	background: -webkit-linear-gradient( #fabb3f, #f8ad35, #f29027, #ee8122);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -16,8 +16,19 @@ pre {
 	font-size: 18px;
 }
 
+.borderIfaCont {
+	background: linear-gradient(to right top, #ff8e12, #ffa001, #feb200, #fbc400, #f6d609);
+	padding: .5px;
+	margin-top: 15px;
+}
+
+.borderIfa {
+	background-color: #343a40;
+	margin: .5px;
+}
+
 .fontIFA {
-	background: -webkit-linear-gradient( #fabb3f, #f8ad35, #f29027, #ee8122);
+	background: -webkit-linear-gradient( #f6d609, #fabb3f, #feb200, #f29027, #ee8122);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }

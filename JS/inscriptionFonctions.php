@@ -21,7 +21,7 @@
 			$pseudo = $prenom. '.' .$nom;
 			$email = $_POST['email'];
 			$groupes = $_POST['groupes'];
-			$mdp = $_POST['mdp1'];
+			$mdp = sha1($_POST['mdp1']);
 
 			if ( $db_handle ) {
 				$rqtMail = 'SELECT EMAIL FROM USERS WHERE EMAIL = "' .$email. '";';

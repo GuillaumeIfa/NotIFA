@@ -1,8 +1,7 @@
 <?php 
-	session_start();
+	include_once '../JS/verifConnect.php';
 	$idInt = $_SESSION['idusr'];
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>

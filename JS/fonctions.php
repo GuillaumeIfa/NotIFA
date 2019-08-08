@@ -182,7 +182,7 @@ include '../configure.php';
 		$prenom = $_POST['prenom'];
 		$pseudo = $prenom. '.' .$nom;
 		$email = $_POST['email'];
-		$mdp = $_POST['mdp'];
+		$mdp = sha1($_POST['mdp']);
 
 		if ( isset($_POST['groupe']) ) {
 
