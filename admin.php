@@ -66,8 +66,7 @@
 						<div class="form-group">
 							<label for="pseudo">Identitfiant: </label>
 							<input type="text" class="form-control" name="pseudo" placeholder="Entrez votre identifiant" required>
-<!-- 							<small id="emailHelp" class="form-text text-muted">Nous ne partageons pas vos données</small>
- -->						</div>
+						</div>
 						<div class="form-group">
 							<label for="mdp">Mot de Passe: </label>
 							<input type="password" class="form-control" name="mdp" placeholder="Entrez votre Mot de Passe" required>

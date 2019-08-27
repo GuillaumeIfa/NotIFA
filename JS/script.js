@@ -663,6 +663,45 @@ let windows_focus = false;
 		})
 	}
 
+// Recherche les messages d'un utilisateur
+	function searchUserMsgAdmin() {
+		let $search = $('#inputMsgSearchUserAdmin').val();
+		$('#getSearchUserAdmin').html('');
+		$.ajax({
+			url: './JS/fonctions.php?action=searchUserMsgAdmin',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				searchUser: $search,
+				action: 'searchUserMsgAdmin'
+			},
+			success: function( datas ) {
+				if( datas.MSG != "Pas de résultat..." ) {
+					console.log( 'IF' )
+					for ( data of datas ) {
+						$('#getSearchUserAdmin').prepend(
+							`<div class="border border-dark rounded list-group-item list-group-item-action mb-2">
+								<div class="d-flex w-100 justify-content-between bg-dark text-light p-2 mb-3 rounded border border-dark">
+									<h5 class="mx-2">${ data.PSEUDO }</h5><i>groupe: ${ data.NOMGRP }</i>
+									<small>${ data.DATE_FR }</small>
+								</div>
+								<pre class="mb-1">${ data.MSG }</pre>
+								<hr>
+								<div>
+									<button class="btn btn-outline-dark replyMsg" data-toggle="modal" data-target="#replyModal" data-idusr = "${ data.IDUSR }"><i class="fas fa-reply"></i></button>
+									<button class="btn btn-outline-dark delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
+								</div>
+							</div>`);
+					}
+				} else {
+					console.log( 'ELSE' )
+					$('#getSearchUserAdmin').prepend(`<div class="card bg-dark col text-center p-3 border-light"><h4>Pas de résultat...</h4></div>`);
+				}
+
+			}
+		})
+	}
+
 //
 	/***********************************
 	* AFFICHAGE ESPACE ADMINISTRATION *
@@ -717,9 +756,13 @@ let windows_focus = false;
 		replyMsgAdmin( idUsr )
 	})
 
-// Bouton de recherche dens les messages
+// Bouton de recherche dans les messages
 	$('#searchBtnMsgAdmin').on('click', () => {
 		searchMsgAdmin();
+	})
+// Bouton de recherche dans les messages
+	$('#searchBtnMsgUserAdmin').on('click', () => {
+		searchUserMsgAdmin();
 	})
 
 

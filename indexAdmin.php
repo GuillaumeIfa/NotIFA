@@ -260,12 +260,12 @@
 		</div>
 
 		<div class="row p-2">
-			<div class="col-8">
+			<div class=" col-sm-12 col-xs-12">
 				<h4>Chercher dans les messages</h4>
 			</div>
-			<div class="col-4 d-flex flex-row-reverse">
+			<div class=" col-sm-12 col-xs-12 d-flex flex-row-reverse">
 				<div class="input-group mb-3">
-					<input id="inputMsgSearchAdmin"t ype="text" class="form-control" placeholder="Recherche">
+					<input id="inputMsgSearchAdmin" type="text" class="form-control" placeholder="Recherche">
 					<div class="input-group-append">
 						<button id="searchBtnMsgAdmin" class="btn btn-outline-light">Rechercher</button>
 					</div>
@@ -274,6 +274,22 @@
 		</div>
 		<div id="getSearchAdmin" class="row">
 			<!-- Affichage des messages -->
+		</div>
+		<div class="row p-2">
+			<div class=" col-sm-12 col-xs-12">
+				<h4>Chercher les messages d'un utilisateur</h4>
+			</div>
+			<div class=" col-sm-12 col-xs-12 d-flex flex-row-reverse">
+				<div class="input-group mb-3">
+					<input id="inputMsgSearchUserAdmin" type="text" class="form-control" placeholder="Recherche">
+					<div class="input-group-append">
+						<button id="searchBtnMsgUserAdmin" class="btn btn-outline-light">Rechercher</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="getSearchUserAdmin" class="row">
+			<!-- Affichage des messages d'un utilisateur-->
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -274,4 +274,26 @@ include '../configure.php';
 		}
 	}
 
+// Fonction pour rechercher les messages par utilisateur
+	if ( isset($_POST['searchUser']) && $_POST['action'] == 'searchUserMsgAdmin') {
+		$search = mysqli_escape_string($db_handle, $_POST['searchUser']);
+		$sql = 'SELECT MESSAGE.*, USERS.*, GROUPES.*, DATE_FORMAT(MESSAGE.DATE, "%H:%i - %d/%m/%y") AS DATE_FR 
+				FROM MESSAGE 
+				INNER JOIN USERS ON MESSAGE.IDUSR = USERS.IDUSR
+				INNER JOIN INTERGRP ON USERS.IDUSR = INTERGRP.IDUSR
+				INNER JOIN GROUPES ON INTERGRP.IDGRP = GROUPES.IDGRP
+				WHERE PSEUDO LIKE "%' .$search. '%" AND CIBLE = "ADMINISTRATION"';
+		$run = mysqli_query($db_handle, $sql);
+
+		while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
+			$tab[] = $getData;
+		}
+		if( isset($tab) ) {
+			echo json_encode( $tab );
+		} else {
+			$tab =["MSG" => "Pas de résultat..."];
+			echo json_encode($tab);
+		}
+	}
+
 ?>

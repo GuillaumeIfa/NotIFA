@@ -1,7 +1,7 @@
 
 function getNouvelles() {
-	$('#loader').show()
-	$('#zoneAff').hide()
+	$('#loader').show();
+	$('#zoneAff').hide();
 	function renderPost(data) {
 		title = data.title.rendered
 		link = data.link
@@ -14,8 +14,6 @@ function getNouvelles() {
 			img = '<a href="'
 				+ link + '" target="_blank"><img class="rounded align-self-start img-thumbnail m-3 mb-0" width="80px" src="../IMG/ifa_simple.png" /></a>'
 		}
-
-
 
 		let html = '<div class="borderIfaCont rounded"><div class="media borderIfa">'
 			+ img + '<div class="media-body"><h3 class="mt-3">'
@@ -35,8 +33,8 @@ function getNouvelles() {
 			}
 		},
 		complete: function() {
-			$('#loader').hide()
-			$('#zoneAff').fadeIn()
+			$('#loader').hide();
+			$('#zoneAff').fadeIn();
 		}
 	})
 }

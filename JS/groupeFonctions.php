@@ -20,7 +20,7 @@
 
 // Fonction qui envoie les messages
 	if ( isset($_POST['action']) && $_POST['action'] == 'sendMessage') {
-		$msg = mysqli_escape_string( $db_handle, $_POST['msg'] );
+		$msg = mysqli_escape_string( $db_handle, htmlentities($_POST['msg'] ));
 		$idUsr = $_SESSION['idusr'];
 		$idGrp = $_SESSION['idGrp'];
 
