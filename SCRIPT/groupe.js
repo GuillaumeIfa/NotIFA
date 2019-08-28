@@ -103,12 +103,12 @@ var window_focus
 					$('#messages').html('')
 					console.log( data )
 					if ( !datas ) {
-						$('#messages').append(`Vous n'avez pas encore de dialogué avec cette personne`)
+						$('#messages').append(`<h3>Vous n'avez pas encore de discuté avec ce groupe</h3>`)
 					} else {
 						for( data of datas ) {
-							$('#messages').append(`<div class="list-group-item list-group-item-action">
+							$('#messages').append(`<div class="list-group-item list-group-item-action bg-dark text-light border-warning">
 													<div class="d-flex w-100 justify-content-between">
-														<h5 class="mb-1">${data.PSEUDO}</h5>
+														<h5 class="mb-1 fontIFA">${data.PSEUDO}</h5>
 														<small>${data.DATE_FR}</small>
 													</div>
 													<p class="mb-1">${data.MSG}</p>

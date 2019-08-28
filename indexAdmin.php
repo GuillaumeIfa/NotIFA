@@ -53,7 +53,7 @@
 <body class="bg-dark">
 	<div class="container withImg shadow-lg mx-auto mt-2">
 		<div>
-			<h1 class="underline text-light text-center pt-3"><u>Espace Administration</u></h1>
+			<h1 class="text-center pt-3 fontIFA">Espace Administration</h1>
 		</div>
 		<div class="d-flex flex-inline justify-content-around p-3 nav">
 			<button type="button" id="gestionBtn" class='tabBtn col-sm-3 col-md-3 btn btn-outline-light  active'>Gestion</button>
@@ -220,8 +220,19 @@
 
 	<div id="tabMessages" class="paragraph container card rounded shadow p-2 mt-3 border-light bg-dark">
 		<div class="row p-2">
+			<div class="col-6">
+				<h4>Envoyer un message:</h4>
+			</div>
+			<div class="col-3 d-flex flex-row-reverse">
+				<button id="sendMsgGrp" class="btn btn-outline-light">Groupe</button>
+			</div>
+			<div class="col-3 d-flex flex-row-reverse">
+				<button id="sendMsgUsr" class="btn btn-outline-light">Stagiaire / Intervenant</button>
+			</div>
+		</div>
+		<div class="row p-2">
 			<div class="col-8">
-				<h4>Voir les messages</h4>
+				<h4>Voir les messages:</h4>
 			</div>
 			<div class="col-4 d-flex flex-row-reverse">
 				<button id="vuMsg" class="btn btn-outline-light">Voir</button>
@@ -260,7 +271,7 @@
 
 		<div class="row p-2">
 			<div class=" col-sm-12 col-xs-12">
-				<h4>Chercher dans les messages</h4>
+				<h4>Chercher dans les messages:</h4>
 			</div>
 			<div class=" col-sm-12 col-xs-12 d-flex flex-row-reverse">
 				<div class="input-group mb-3">
@@ -276,7 +287,7 @@
 		</div>
 		<div class="row p-2">
 			<div class=" col-sm-12 col-xs-12">
-				<h4>Chercher les messages d'un utilisateur</h4>
+				<h4>Chercher les messages d'un utilisateur:</h4>
 			</div>
 			<div class=" col-sm-12 col-xs-12 d-flex flex-row-reverse">
 				<div class="input-group mb-3">
