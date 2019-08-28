@@ -41,7 +41,7 @@ const GroupList = class GroupList extends BasicList {
 	}
 
 	static getAll () {
-		return fetch('./JS/fonctions.php?action=getGroupes', {
+		return fetch('./SCRIPT/fonctions.php?action=getGroupes', {
 			method: 'get'
 		})
 		.then(result => {
@@ -102,7 +102,7 @@ let windows_focus = false;
 			addGroupe()
 		})
 		$.ajax({
-			url: './JS/fonctions.php?action=getGroupes',
+			url: './SCRIPT/fonctions.php?action=getGroupes',
 			type: 'POST',
 			dataType: 'json',
 			success: (datas) => {
@@ -144,7 +144,7 @@ let windows_focus = false;
 		if( $groupe != '' && $groupe ){
 			$('#nomGroupe').val('');
 			$.ajax({
-				url: './JS/fonctions.php?action=addGroupe',
+				url: './SCRIPT/fonctions.php?action=addGroupe',
 				type: 'POST',
 				data: {
 					action: 'addGroupe',
@@ -164,7 +164,7 @@ let windows_focus = false;
 // Fonction pour supprimer un groupe
 	function delGroupe(id) {
 		$.ajax({
-			url: './JS/fonctions.php?action=delGroupe',
+			url: './SCRIPT/fonctions.php?action=delGroupe',
 			type: 'POST',
 			data: {
 				action: 'delGroupe',
@@ -182,7 +182,7 @@ let windows_focus = false;
 		let $id = id;
 		let $nom = nom
 		$.ajax({
-			url: './JS/fonctions.php?action=editGroupe',
+			url: './SCRIPT/fonctions.php?action=editGroupe',
 			type: 'POST',
 			data: {
 				action: 'editGroupe',
@@ -209,7 +209,7 @@ let windows_focus = false;
 			addInterv();
 		})
 		$.ajax({
-			url: './JS/fonctions.php?action=getInterv',
+			url: './SCRIPT/fonctions.php?action=getInterv',
 			type: 'POST',
 			dataType: 'json',
 			success: (datas) => {
@@ -273,7 +273,7 @@ let windows_focus = false;
 						+ id +'" data-toggle="modal" data-target="#addGrpInterv">+</button>';
 		$("#grpInterv" + id).append(addGrpBtn);
 		$.ajax({
-			url: './JS/fonctions.php?action=getIntervGroup',
+			url: './SCRIPT/fonctions.php?action=getIntervGroup',
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -306,7 +306,7 @@ let windows_focus = false;
 	function getGroupesInterv() {
 		$('.getGroupesInterv').html('');
 		$.ajax({
-			url: './JS/fonctions.php?action=getGroupes',
+			url: './SCRIPT/fonctions.php?action=getGroupes',
 			type: 'GET',
 			dataType: 'json',
 			success: (datas) => {
@@ -337,7 +337,7 @@ let windows_focus = false;
 		})
 
 		$.ajax({
-			url: './JS/fonctions.php?action=addInterv',
+			url: './SCRIPT/fonctions.php?action=addInterv',
 			type: 'POST',
 			data: {
 				action: "addInterv",
@@ -365,7 +365,7 @@ let windows_focus = false;
 		//console.log( idGrp, id);
 		//$("#grpInterv" + id).html(''); 
 		$.ajax({
-			url: './JS/fonctions.php?action=delGroupeInterv',
+			url: './SCRIPT/fonctions.php?action=delGroupeInterv',
 			type: 'POST',
 			data: {
 				action: 'delGroupeInterv',
@@ -389,7 +389,7 @@ let windows_focus = false;
 		})
 
 		$.ajax({
-			url: './JS/fonctions.php?action=addGroupeInterv',
+			url: './SCRIPT/fonctions.php?action=addGroupeInterv',
 			type: 'POST',
 			data: {
 				action: "addGroupeInterv",
@@ -406,7 +406,7 @@ let windows_focus = false;
 // Fonction pour supprimer intervenant
 	function delInterv( id ) {
 		$.ajax({
-			url: './JS/fonctions.php?action=delInterv',
+			url: './SCRIPT/fonctions.php?action=delInterv',
 			type: 'POST',
 			data: {
 				action: 'delInterv',
@@ -432,7 +432,7 @@ let windows_focus = false;
 			addUsr();
 		})
 		$.ajax({
-			url: './JS/fonctions.php?action=getUsr',
+			url: './SCRIPT/fonctions.php?action=getUsr',
 			type: 'POST',
 			dataType: 'json',
 			success: (datas) => {
@@ -463,7 +463,7 @@ let windows_focus = false;
 // Fonction pour supprimer un utilisateur
 	function delUsr( id ) {
 		$.ajax({
-			url: './JS/fonctions.php?action=delUsr',
+			url: './SCRIPT/fonctions.php?action=delUsr',
 			type: 'POST',
 			data: {
 				action: 'delUsr',
@@ -480,7 +480,7 @@ let windows_focus = false;
 	function getGrpUsr() {
 		$('.getGroupesUsr').html('');
 		$.ajax({
-			url: './JS/fonctions.php?action=getGroupes',
+			url: './SCRIPT/fonctions.php?action=getGroupes',
 			type: 'GET',
 			dataType: 'json',
 			success: (datas) => {
@@ -542,7 +542,7 @@ let windows_focus = false;
 
 	function getMsgAdmin() {
 		$.ajax({
-			url: './JS/fonctions.php?action=getMsgAdmin',
+			url: './SCRIPT/fonctions.php?action=getMsgAdmin',
 			type: 'GET',
 			dataType: 'json',
 			//data: 'getMsgAdmin',
@@ -586,7 +586,7 @@ let windows_focus = false;
 // Fonction pour effacer les messages
 	function delMsg( id ) {
 		$.ajax({
-			url: './JS/fonctions.php?action=delMsg',
+			url: './SCRIPT/fonctions.php?action=delMsg',
 			type: 'POST',
 			data: {
 				action: 'delMsg',
@@ -603,7 +603,7 @@ let windows_focus = false;
 	function replyMsgAdmin( id ) {
 		let $msgAdmin = $('#replyAdmin').val();
 		$.ajax({
-			url: './JS/fonctions.php?action=replyAdmin',
+			url: './SCRIPT/fonctions.php?action=replyAdmin',
 			type: 'POST',
 			data: {
 				action: 'replyAdmin',
@@ -630,7 +630,7 @@ let windows_focus = false;
 		let $search = $('#inputMsgSearchAdmin').val();
 		$('#getSearchAdmin').html('');
 		$.ajax({
-			url: './JS/fonctions.php?action=searchMsgAdmin',
+			url: './SCRIPT/fonctions.php?action=searchMsgAdmin',
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -668,7 +668,7 @@ let windows_focus = false;
 		let $search = $('#inputMsgSearchUserAdmin').val();
 		$('#getSearchUserAdmin').html('');
 		$.ajax({
-			url: './JS/fonctions.php?action=searchUserMsgAdmin',
+			url: './SCRIPT/fonctions.php?action=searchUserMsgAdmin',
 			type: 'POST',
 			dataType: 'json',
 			data: {

@@ -12,7 +12,7 @@ function closeNav() {
 	function msgAdmin() {
 		$msg = $('#formAdmin').val()
 		$.ajax({
-			url: '../JS/contactFonction.php',
+			url: '../SCRIPT/contactFonction.php',
 			type: 'POST',
 			data: {
 				action: 'msgAdmin',
@@ -35,32 +35,38 @@ function closeNav() {
 // Fonction pour afficher les messages de l'utilisateur venant de l'administrateur
 	function msgFromAdmin() {
 		$.ajax({
-			url: '../JS/contactFonction.php?action=getMsgFromAdmin',
+			url: '../SCRIPT/contactFonction.php?action=getMsgFromAdmin',
 			type: 'GET',
 			dataType: 'json',
 			success: function( datas ) {
 				$('#loader').show();
-				if ( testerTab.length != datas.length ) {
-					for( data of datas ) {
-						$('#msgFromAdmin').prepend(
-							`<div class="bg-dark border border-light text-light list-group-item list-group-item-action mb-2">
-								<div class="d-flex w-100 justify-content-between pt-2 pr-1 mb-2 rounded border border-dark backIFA">
-									<h5 class="mx-2">Administration</h5>
-									<small>${ data.DATE_FR }</small>
-								</div>
-								<pre class="mb-1 text-light">${ data.MSG }</pre>
-								<div class="float-right">
-									<button class="btn btn-outline-light delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
-								</div>
-							</div>`)
+				if( datas ) {
+					if ( testerTab.length != datas.length ) {
+						for( data of datas ) {
+							$('#msgFromAdmin').prepend(
+								`<div class="bg-dark border border-light text-light list-group-item list-group-item-action mb-2">
+									<div class="d-flex w-100 justify-content-between pt-2 pr-1 mb-2 rounded border border-dark backIFA">
+										<h5 class="mx-2">Administration</h5>
+										<small>${ data.DATE_FR }</small>
+									</div>
+									<pre class="mb-1 text-light">${ data.MSG }</pre>
+									<div class="float-right">
+										<button class="btn btn-outline-light delMsg" data-idmsg = "${ data.IDMSG }"><i class="fas fa-trash-alt"></i></button>
+									</div>
+								</div>`)
+						}
+						$('.delMsg').on('click', function() {
+							idMsg = $(this).data('idmsg');
+							delMsg( idMsg );
+						})
+						testerTab = datas;
+					} else {
+						testerTab = datas;
 					}
-					$('.delMsg').on('click', function() {
-						idMsg = $(this).data('idmsg');
-						delMsg( idMsg );
-					})
-					testerTab = datas;
 				} else {
-					testerTab = datas;
+					$('#msgFromAdmin').html('');
+					$('#msgFromAdmin').prepend(
+						`<h4>Vous n'avez pas de reçu de message</h4>`)
 				}
 			},
 			complete: function() {
@@ -72,7 +78,7 @@ function closeNav() {
 // Fonction pour supprimer un message
 	function delMsg( id ) {
 		$.ajax({
-			url: '../JS/contactFonction.php?action=delMsg',
+			url: '../SCRIPT/contactFonction.php?action=delMsg',
 			type: 'POST',
 			data: {
 				action: 'delMsg',

@@ -1,7 +1,7 @@
 $(function() {
 	function getUserGrp() {
 		$.ajax({
-			url: '../JS/fonctions.php?action=getGroupes',
+			url: '../SCRIPT/fonctions.php?action=getGroupes',
 			type: 'GET',
 			dataType: 'json',
 			success: (datas) => {

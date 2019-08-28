@@ -1,4 +1,4 @@
-<?php include '../JS/inscriptionFonctions.php' ?>
+<?php include '../SCRIPT/inscriptionFonctions.php' ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,8 +17,8 @@
 		<div class="m-0 menu">
 			<img src="../IMG/Logo-IFA-1.png" class="logoIfa mx-auto d-block">
 		</div>
-		<div class="container text-dark mt-5 mb-5">
-			<div class="card p-5">
+		<div class="container text-light mt-5 mb-5">
+			<div class="card p-5 bg-dark border border-light rounded">
 				<form action="" method="POST" class="form-group">
 					<div>
 						<h1>Inscription</h1>
@@ -63,7 +63,7 @@
 						<small class="text-muted">Si vous ne connaissez pas votre groupe, merci de demander à l'administration de l'IFA</small>
 
 						<div class="mt-4">
-							<button type="submit" name="submitInscription" class="btn btn-outline-dark">S'inscrire</button>
+							<button type="submit" name="submitInscription" class="btn btn-outline-light">S'inscrire</button>
 						</div>
 					</div>
 				</form> 
@@ -80,7 +80,7 @@
 				integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
 				crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="../JS/inscription.js"></script>
+		<script src="../SCRIPT/inscription.js"></script>
 	</body>
 </html>
 

@@ -1,5 +1,5 @@
 <?php 
-	include_once '../JS/verifConnect.php';
+	include_once '../SCRIPT/verifConnect.php';
 	$idInt = $_SESSION['idusr'];
 ?>
 
@@ -17,15 +17,11 @@
 		<div class="container">
 			<h1 class="text-light mb-3">Informations</h1>
 			<div class="card mb-3 p-3 bg-dark border border-light" id="msgFromAdmin">
-			<div class="text-center text-light">
-				<div class="spinner-border m-5 p-3" id="loader">
-					<span class="sr-only">Loading...</span>
+				<div class="text-center text-light">
+					<div class="spinner-border m-5 p-3" id="loader">
+						<span class="sr-only">Loading...</span>
+					</div>
 				</div>
-			</div>
-<!-- 				<div class="card-body">
-					<h5 class="card-title">Titre</h5>
-					<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, consectetur illum, facilis qui dignissimos iusto, repellendus ratione quis sapiente, animi accusamus eius quisquam suscipit officiis nihil commodi laborum recusandae dolore.</p>
-				</div> -->
 			</div>
 		</div>
 		<hr class="bg-light m-5">
@@ -42,6 +38,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="../JS/contact.js"></script>
+		<script src="../SCRIPT/contact.js"></script>
 	</body>
 </html>

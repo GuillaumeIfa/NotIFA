@@ -1,5 +1,5 @@
 <?php 
-	include './JS/connection.php';
+	include './SCRIPT/connection.php';
 ?>
 
 

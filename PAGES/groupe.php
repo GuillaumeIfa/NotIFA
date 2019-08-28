@@ -1,5 +1,5 @@
 <?php 
-	include_once '../JS/verifConnect.php';
+	include_once '../SCRIPT/verifConnect.php';
 	$idInt = $_SESSION['idusr'];
 ?>
 <!DOCTYPE html>
@@ -77,6 +77,6 @@
 		</div>
 		<?php include_once './footer.php'; ?>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="../JS/groupe.js"></script>
+		<script src="../SCRIPT/groupe.js"></script>
 	</body>
 </html>

@@ -11,7 +11,7 @@
 							<a href="./groupe.php">Discussion</a>
 							<a href="./contact.php">Contact Administration</a>
 							<a href="./profile.php">Modifier Profil</a>
-							<a href="../JS/quit.php">Déconnection</a>
+							<a href="../SCRIPT/quit.php">Déconnection</a>
 						</div>
 					</div>
 					<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>

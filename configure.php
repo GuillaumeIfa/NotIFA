@@ -1,9 +1,9 @@
 <?php
 
 	define('DB_SERVER', 'localhost');
-	define('DB_USER', 'root');
-	define('DB_PASS', 'root');
-	define('DB_NAME', 'AlertIFA');
+	define('DB_USER', 'proot');
+	define('DB_PASS', 'proot');
+	define('DB_NAME', 'alertifa');
 
 	$db_handle = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 

@@ -1,5 +1,5 @@
 <?php 
-	include_once '../JS/verifConnect.php';
+	include_once '../SCRIPT/verifConnect.php';
 	$idInt = $_SESSION['idusr'];
 ?>
 <!DOCTYPE html>
@@ -13,13 +13,13 @@
 	</head>
 	<body class="bg-dark" onload="getIntGrp('<?php echo $idInt ?>')">
 		<?php include_once './menu.php'; ?>
-		<div class="container text-dark mt-5 mb-5">
-			<div class="card p-5">
+		<div class="container text-light mt-5 mb-5">
+			<div class="card p-5 bg-dark border border-light rounded">
 				<form action="" class="form-group">
 					<div>
-						<div class="row bg-dark rounded text-light shadow">
+						<div class="row bg-dark border border-light rounded text-light">
 							<div class="col">
-								<h1>Profil</h1>
+								<h1 class="mt-3">Profil</h1>
 								<p>Modifier vos informations:</p>
 							</div>
 							<div class="col">
@@ -59,8 +59,8 @@
 						<input require type="password" value="" id="mdp" required class="form-control"> -->
 
 						<div class="mt-4">
-							<button type="button" id="modUsrBtn" class="btn btn-outline-dark">Modifier</button>
-							<button type="button" onclick="window.location.href='../JS/quit.php'" class="btn btn-outline-dark float-right">Déconnexion</button>
+							<button type="button" id="modUsrBtn" class="btn btn-outline-light">Modifier</button>
+							<button type="button" onclick="window.location.href='../SCRIPT/quit.php'" class="btn btn-outline-light float-right">Déconnexion</button>
 						</div>
 					</div>
 				</form> 
@@ -71,7 +71,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="../JS/profile.js"></script>
+		<script src="../SCRIPT/profile.js"></script>
 	</body>
 </html>
 

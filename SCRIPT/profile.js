@@ -14,7 +14,7 @@ $('#modUsrBtn').on('click', function () {
 	let $pseudo = $prenom + '.' + $nom
 
 	$.ajax({
-		url: '../JS/profileFonction.php',
+		url: '../SCRIPT/profileFonction.php',
 		type: 'POST',
 		dataType: 'json',
 		data: {
@@ -48,7 +48,7 @@ $('#modUsrBtn').on('click', function () {
 // Afficher groupes de l'intervenant dans la page profile
 function getIntGrp( id ) { 
 	$.ajax({
-		url: '../JS/fonctions.php?action=getIntervGroup',
+		url: '../SCRIPT/fonctions.php?action=getIntervGroup',
 		type: 'POST',
 		dataType: 'json',
 		data: {

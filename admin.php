@@ -57,10 +57,10 @@
 		<link rel="stylesheet" href="./CSS/style.css">
 		<title>NotIfa</title>
 	</head>
-	<body>
-		<div class="container">
+	<body class="bg-dark">
+		<div class="container text-light">
 			<div id="middleBlock" class="row justify-content-center">
-				<div class="jumbotron border border-dark shadow">
+				<div class="jumbotron border border-light bg-dark rounded shadow">
 					<h2>Administration AlertIFA</h2>
 					<form name="form1" action="" method="POST">
 						<div class="form-group">
@@ -75,7 +75,7 @@
 							<input type="checkbox" class="form-check-input" id="check">
 							<label class="form-check-label" for="check">Se souvenir de moi</label>
 						</div> -->
-						<button type="submit" class="btn btn-dark" name="submit1">Envoyer</button>
+						<button type="submit" class="btn btn-outline-light" name="submit1">Envoyer</button>
 						<div class="text-center"><?php if($msg) echo $msg?></div>
 					</form>
 				</div>

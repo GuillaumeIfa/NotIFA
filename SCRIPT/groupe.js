@@ -36,7 +36,7 @@ var window_focus
 	$('#customSwitch1').on('click', function() {
 		stat = !stat
 		$.ajax({
-			url: '../JS/groupeFonctions.php',
+			url: '../SCRIPT/groupeFonctions.php',
 			type: 'POST',
 			data: {
 				action: 'switchConnect',
@@ -59,7 +59,7 @@ var window_focus
 	function sendMessage() {
 		let $message = $('#chatMessage').val()
 		$.ajax({
-			url: '../JS/groupeFonctions.php',
+			url: '../SCRIPT/groupeFonctions.php',
 			type: 'POST',
 			data: {
 				action: 'sendMessage',
@@ -76,7 +76,7 @@ var window_focus
 	function sendMsgUsr(idRecev) {
 		let $message = $('#chatMessage').val()
 		$.ajax({
-			url: '../JS/groupeFonctions.php',
+			url: '../SCRIPT/groupeFonctions.php',
 			type: 'POST',
 			data: {
 				action: 'sendMsgUsr',
@@ -95,7 +95,7 @@ var window_focus
 		clearInterval( itv )
 		itv = setInterval(function() {
 		$.ajax({
-			url: '../JS/groupeFonctions.php?action=getMsgInt',
+			url: '../SCRIPT/groupeFonctions.php?action=getMsgInt',
 			type: 'GET',
 			dataType: 'json',
 			data: { idGrp: idGrp },
@@ -129,7 +129,7 @@ var window_focus
 // Fonction qui affiche les messages
 	function getMessage() {
 		$.ajax({
-			url: '../JS/groupeFonctions.php?action=getMessage',
+			url: '../SCRIPT/groupeFonctions.php?action=getMessage',
 			type: 'GET',
 			dataType: 'json',
 			success: function( datas ) {
@@ -164,7 +164,7 @@ var window_focus
 		clearInterval( itv )
 		itv = setInterval(function() {
 			$.ajax({
-				url: '../JS/groupeFonctions.php',
+				url: '../SCRIPT/groupeFonctions.php',
 				type: 'POST',
 				dataType: 'json',
 				data: 'getMsgUsr=' + id,
@@ -174,9 +174,9 @@ var window_focus
 						$('#messages').append(`<h4><i>Vous n'avez pas encore dialogué avec cette personne.</i></h4>`)
 					} else {
 						for( data of datas ) {
-							$('#messages').append(`<div class="list-group-item list-group-item-action">
+							$('#messages').append(`<div class="list-group-item list-group-item-action bg-dark text-light border-warning">
 													<div class="d-flex w-100 justify-content-between">
-														<h5 class="mb-1">${ data.PSEUDO }</h5>
+														<h5 class="mb-1 fontIFA">${ data.PSEUDO }</h5>
 														<small>${ data.DATE_FR }</small>
 													</div>
 													<p class="mb-1">${ data.MSG }</p>
@@ -205,7 +205,7 @@ var window_focus
 		$('#inputGrpChat').html('')
 		$('#inputGrpChat').append(`<option selected>Dialoguer avec...</option>`)
 		$.ajax({
-			url: '../JS/groupeFonctions.php?action=getUsers',
+			url: '../SCRIPT/groupeFonctions.php?action=getUsers',
 			type: 'GET',
 			dataType: 'json',
 			success: function( datas ) {
@@ -246,7 +246,7 @@ var window_focus
 // Fonction pour afficher les groupes d'un intervenant
 	function getIntGrp( id ) { 
 		$.ajax({
-			url: '../JS/fonctions.php?action=getIntervGroup',
+			url: '../SCRIPT/fonctions.php?action=getIntervGroup',
 			type: 'POST',
 			dataType: 'json',
 			data: {

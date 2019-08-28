@@ -2,7 +2,7 @@ body {
 	font-weight: lighter;
 }
 
-h1, h3, h4 {
+h1, h2, h3, h4 {
 	/*font-weight: lighter;*/
 	background: -webkit-linear-gradient( #fabb3f, #f8ad35, #f29027, #ee8122);
 	-webkit-background-clip: text;
