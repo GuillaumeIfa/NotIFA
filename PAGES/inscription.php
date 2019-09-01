@@ -1,4 +1,7 @@
-<?php include '../SCRIPT/inscriptionFonctions.php' ?>
+<?php
+	include '../SCRIPT/inscriptionFonctions.php';
+	header("Content-Security-Policy: default-src 'self';script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com code.jquery.com stackpath.bootstrapcdn.com ajax.googleapis.com;style-src 'self' 'unsafe-inline' use.fontawesome.com ajax.googleapis.com;");
+?>
 <!DOCTYPE html>
 <html>
 	<head>
