@@ -1,9 +1,13 @@
+$(function() {
 
 let stat = false
 let testerTab = new Array()
 var itv
-var window_focus
+var window_focus = true
+var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 //var sound = 'plop'
+
+$.ajaxSetup({ cache: false });
 
 // Fonction pour savoir si la fenêtre est focus()
 	$(window).focus(function() {
@@ -128,13 +132,15 @@ var window_focus
 
 // Fonction qui affiche les messages
 	function getMessage() {
+    console.log( window_focus );
 		$.ajax({
 			url: '../SCRIPT/groupeFonctions.php?action=getMessage',
 			type: 'GET',
 			dataType: 'json',
 			success: function( datas ) {
 				if ( testerTab.length != datas.length ) {
-					$('#messages').html('')
+					$('#messages').html('');
+					getUsers();
 					for( data of datas ) {
 						$('#messages').append(`<div class="list-group-item list-group-item-action bg-dark text-light border-warning">
 												<div class="d-flex w-100 justify-content-between">
@@ -211,7 +217,7 @@ var window_focus
 			success: function( datas ) {
 				for( data of datas ) {
 					if ( data.ONLINE == 1) {
-						$('#inputGrpChat').append(`<option style="color: darkgreen" value="${data.IDUSR}">${data.PSEUDO}</value>`)
+						$('#inputGrpChat').append(`<option style="color: darkgreen" value="${data.IDUSR}">${data.PSEUDO}*</value>`)
 					} else {
 						$('#inputGrpChat').append(`<option style="color: grey" value="${data.IDUSR}">${data.PSEUDO}</value>`)
 					}
@@ -266,20 +272,22 @@ var window_focus
 	}
 
 // Notifications Navigateur
-	Notification.requestPermission(function() {
-		if (Notification.permission === 'granted') {
-			// user approved.
-			// use of new Notification(...) syntax will now be successful
-		 }// else if (Notification.permission === 'denied') {
-		// 	// user denied.
-		// } else { // Notification.permission === 'default'
-		// 	// user didn’t make a decision.
-		// 	// You can’t send notifications until they grant permission.
-		// }
-	});
+	if ( !iOS ) {
+		Notification.requestPermission(function() {
+			if (Notification.permission === 'granted') {
+				// user approved.
+				// use of new Notification(...) syntax will now be successful
+			 }// else if (Notification.permission === 'denied') {
+			// 	// user denied.
+			// } else { // Notification.permission === 'default'
+			// 	// user didn’t make a decision.
+			// 	// You can’t send notifications until they grant permission.
+			// }
+		});
+	} 
 
 
-$(function() {
+//$(function() {
 	console.log( 'Hey ! Arrêtez de regarder mon intimité !')
 	console.log( '‍🙆‍♀️' )
 	//loadSound()

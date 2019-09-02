@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	if ( !isset($_SESSION['email']) ) {
-		header('Location: ../index.tmp.php');
+		header('Location: ../index.php');
 	} else 	if ( $_SESSION['connected'] ) {
 		echo '
 			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">

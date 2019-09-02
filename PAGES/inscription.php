@@ -31,7 +31,7 @@
 							</div>
 							<div class="col">
 								<i class="fas fa-user"></i>
-								<label for="prenom" class="pt-2"><span class="titre">Prenom</span></label>
+								<label for="prenom" class="pt-2"><span class="titre">Prénom</span></label>
 							</div>
 						</div>
 						<div class="row">
@@ -39,7 +39,7 @@
 								<input type="text" placeholder="Nom" name="nom" required class="form-control">
 							</div>
 							<div class="col">
-								<input type="text" placeholder="Prenom" name="prenom" required class="form-control">
+								<input type="text" placeholder="Prénom" name="prenom" required class="form-control">
 							</div>
 						</div>
 						

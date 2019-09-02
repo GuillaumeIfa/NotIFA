@@ -8,7 +8,8 @@
 	if ( isset($_GET['action']) && $_GET['action'] == 'getMessage' ) {
 		$sql = 'SELECT MESSAGE.*, USERS.*, DATE_FORMAT(MESSAGE.DATE, "%H:%i - %d/%m/%y") AS DATE_FR FROM MESSAGE
 				INNER JOIN USERS ON MESSAGE.IDUSR = USERS.IDUSR
-				WHERE IDCBL = '.$cbl.' AND CIBLE = "GROUPE";';
+        WHERE IDCBL = '.$cbl.' AND CIBLE = "GROUPE"
+        ORDER BY MESSAGE.IDMSG;';
 		$run = mysqli_query($db_handle, $sql);
 
 		while( $getData = mysqli_fetch_array($run, MYSQLI_ASSOC) ) {
@@ -62,8 +63,9 @@
 		$idUsr = $_SESSION['idusr'];
 		$sql = 'SELECT MESSAGE.*, USERS.*, DATE_FORMAT(MESSAGE.DATE, "%H:%i - %d/%m/%y") AS DATE_FR FROM MESSAGE
 				INNER JOIN USERS ON MESSAGE.IDUSR = USERS.IDUSR
-				WHERE IDCBL = '.$idCbl.' AND CIBLE = "UTILISATEUR" AND MESSAGE.IDUSR = '.$idUsr.'
-				OR IDCBL = '.$idUsr.' AND CIBLE = "UTILISATEUR" AND MESSAGE.IDUSR = '.$idCbl.';';
+				WHERE IDCBL = '.$idUsr.' AND CIBLE = "UTILISATEUR" AND MESSAGE.IDUSR = '.$idCbl.'
+				OR IDCBL = '.$idCbl.' AND CIBLE = "UTILISATEUR" AND MESSAGE.IDUSR = '.$idUsr.'
+				ORDER BY MESSAGE.IDMSG;';
 		$run = mysqli_query($db_handle, $sql);
 
 		$tab = null;

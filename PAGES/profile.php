@@ -19,7 +19,7 @@
 					<div>
 						<div class="row bg-dark border border-light rounded text-light">
 							<div class="col">
-								<h1 class="mt-3">Profil</h1>
+								<h1 class="mt-3">Profile</h1>
 								<p>Modifier vos informations:</p>
 							</div>
 							<div class="col">
@@ -38,7 +38,7 @@
 							</div>
 							<div class="col">
 								<i class="fas fa-user"></i>
-								<label for="prenom" class="pt-2"><span class="titre">Prenom</span></label>
+								<label for="prenom" class="pt-2"><span class="titre">Prénom</span></label>
 							</div>
 						</div>
 						<div class="row">

@@ -52,7 +52,7 @@
 					if ( $result_query ) {
 						echo '
 							<div class="fixed-top alert alert-dark alert-dismissible fade show bg-dark text-white" role="alert">
-								<h4><i class="fas fa-thumbs-up"></i> Felicitation !</h4> <br> 
+								<h4><i class="fas fa-thumbs-up"></i> Félicitations !</h4> <br> 
 								Vous êtes inscrit, vous pouvez maintenant vous connecter <a href="../index.php"><b>ICI</b></a>
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>

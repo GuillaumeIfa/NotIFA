@@ -11,8 +11,10 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="../CSS/style.css">
 		<script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+		<script src="../SCRIPT/groupe.js"></script>
 	</head>
-	<body class="bg-dark" onload="getIntGrp(<?php echo $idInt ?>)">
+	<body class="bg-dark" >
 		<style>
 			body {
 				min-height: 800px;
@@ -76,7 +78,5 @@
 			</div>
 		</div>
 		<?php include_once './footer.php'; ?>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="../SCRIPT/groupe.js"></script>
 	</body>
 </html>
