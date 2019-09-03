@@ -14,7 +14,7 @@
 	}
 
 	require_once './configure.php';
-	
+
 	if (isset($_POST['submitAdmin'])) {
 		$pseudo = $_POST['pseudo'];
 		$mdp = $_POST['mdp']; 
@@ -220,16 +220,101 @@
 
 	<div id="tabMessages" class="paragraph container card rounded shadow p-2 mt-3 border-light bg-dark">
 		<div class="row p-2">
-			<div class="col-6">
+			<div class="col-sm-6">
 				<h4>Envoyer un message:</h4>
 			</div>
-			<div class="col-3 d-flex flex-row-reverse">
-				<button id="sendMsgGrp" class="btn btn-outline-light">Groupe</button>
+			<div class="col-sm-2 d-flex flex-row-reverse">
+				<button id="btnSendMsgGrp" class="btn btn-outline-light" data-toggle="modal" data-target="#msgGrpAdmin">Groupes</button>
 			</div>
-			<div class="col-3 d-flex flex-row-reverse">
-				<button id="sendMsgUsr" class="btn btn-outline-light">Stagiaire / Intervenant</button>
+			<div class="col-sm-2 d-flex flex-row-reverse">
+				<button id="btnSendMsgUsr" class="btn btn-outline-light" data-toggle="modal" data-target="#msgUsrAdmin">Stagiaires</button>
+			</div>
+			<div class="col-sm-2 d-flex flex-row-reverse">
+				<button id="btnSendMsgInt" class="btn btn-outline-light" data-toggle="modal" data-target="#msgIntervAdmin">Intervenants</button>
 			</div>
 		</div>
+
+		<!-- Modal d'envoi de messages aux groupes -->
+		<div class="modal fade border-dark" id="msgGrpAdmin" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="ModalLabel">Envoyer un message:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<textarea class="form-control" id="msgGrpAdminTxt" rows="8"></textarea>
+						</div>
+						<label for="groupes">Groupes:</label>
+						<div id="getGroupLst">
+							<!-- Liste des groupes dans le modal -->
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
+						<button type="button" class="btn btn-outline-dark" name="btnMsgGrpAdmin" id="btnMsgGrpAdmin" data-dismiss="modal">Envoyer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal d'envoi de messages à un stagiaire -->
+		<div class="modal fade border-dark" id="msgUsrAdmin" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="ModalLabel">Envoyer un message:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<textarea class="form-control" id="msgUsrAdminTxt" rows="8"></textarea>
+						</div>
+						<label for="stagiaires">Stagiaire:</label>
+						<select id="getUsersLst">
+							<!-- Liste des groupes dans le modal -->
+						</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
+						<button type="button" class="btn btn-outline-dark" name="btnMsgGrpAdmin" id="btnMsgUsrAdmin" data-dismiss="modal">Envoyer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal d'envoi de messages à un intervenant -->
+		<div class="modal fade border-dark" id="msgIntervAdmin" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="ModalLabel">Envoyer un message:</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<textarea class="form-control" id="msgIntervAdminTxt" rows="8"></textarea>
+						</div>
+						<label for="intervenant">Intervenant:</label>
+						<select id="getIntervLst">
+							<!-- Liste des groupes dans le modal -->
+						</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
+						<button type="button" class="btn btn-outline-dark" name="btnMsgGrpAdmin" id="btnMsgIntervAdmin" data-dismiss="modal">Envoyer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="row p-2">
 			<div class="col-8">
 				<h4>Voir les messages:</h4>

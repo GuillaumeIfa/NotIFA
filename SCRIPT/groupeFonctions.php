@@ -25,10 +25,13 @@
 		$idUsr = $_SESSION['idusr'];
 		$idGrp = $_SESSION['idGrp'];
 
-		$rqt = 'INSERT INTO MESSAGE (MSG, IDUSR, CIBLE, IDCBL)
-				VALUES ("'.$msg.'", '.$idUsr.', "GROUPE", '.$idGrp.');';
+		if ( trim($msg) != '' ) {
+			$rqt = 'INSERT INTO MESSAGE (MSG, IDUSR, CIBLE, IDCBL)
+					VALUES ("'.trim($msg).'", '.$idUsr.', "GROUPE", '.$idGrp.');';
 
-		mysqli_query($db_handle, $rqt);
+			mysqli_query($db_handle, $rqt);
+		}
+
 	}
 
 // Fonction qui envoie un message à un utilisateur

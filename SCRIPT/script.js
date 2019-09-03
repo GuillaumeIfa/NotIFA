@@ -619,7 +619,7 @@ let windows_focus = false;
 							+ '</button>'
 						+ '</div>'
 
-				$('body').prepend(txt)
+				$('body').prepend(txt);
 
 			}
 		})
@@ -702,6 +702,138 @@ let windows_focus = false;
 		})
 	}
 
+// Fonction pour voir les groupes dans le modal messageGrp
+	function getGroupLst() {
+		$('#getGroupLst').html('');
+		$.ajax({
+			url: './SCRIPT/fonctions.php?action=getGroupes',
+			type: 'GET',
+			dataType: 'json',
+			success: (datas) => {
+				for (const data of datas) {
+					let id = data.IDGRP;
+					let nom = data.NOMGRP;
+
+					let txt = '<li class="list-group-item">' 
+						+ nom + '<input type="checkbox" class="groupes checkbox float-right" name="groupesInterv[]"  value="' 
+								+ id + '"></li>';
+					$('#getGroupLst').append(txt);
+				}
+			}
+		})
+	}
+
+// Fonction pour envoyer un message à un ou des groupes
+	function sendMsgGrpAdmin() {
+		let $msgGrpAdmin = $('#msgGrpAdminTxt').val();
+		let $groupes = [];
+
+		$('.groupes:checked').each( function() {
+			$groupes.push( $(this).val() );
+		})
+
+		$.ajax({
+			url: './SCRIPT/fonctions.php?action=sendMsgGrpAdmin',
+			type: 'POST',
+			data: {
+				action: "sendMsgGrpAdmin",
+				msg: $msgGrpAdmin,
+				groupes: $groupes
+			},
+			success: function(data) {
+				console.log('yop');
+			}
+		})
+	}
+
+// Fonction pour afficher la liste des stagiaires dans message admin
+	function getUsrLst() {
+		$('#getUsersLst').html('');
+		$.ajax({
+			url: './SCRIPT/fonctions.php?action=getUsr',
+			type: 'GET',
+			dataType: 'json',
+			success: (datas) => {
+				for (const data of datas) {
+					let id = data.IDUSR;
+					let pseudo = data.PSEUDO;
+
+					let txt = `<option value="${id}">${pseudo}</option>`
+					$('#getUsersLst').append(txt);
+				}
+			}
+		})
+	}
+
+// Fonction pour envoyer un message à un stagiaire dans admin
+	function sendMsgUsrAdmin() {
+		let $msg = $('#msgUsrAdminTxt').val();
+		let $idSta = $('#getUsersLst').val();
+		$.ajax({
+			url: './SCRIPT/fonctions.php?action=sendMsgUsrAdmin',
+			type: 'POST',
+			data: {
+				action: 'sendMsgUsrAdmin',
+				msg: $msg,
+				id: $idSta
+			},
+			success: () => {
+				txt = '<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">'
+							+ '<i class="fas fa-thumbs-up pr-2"></i></i>Votre message a bien été envoyé'
+							+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+								+ '<span aria-hidden="true">&times;</span>'
+							+ '</button>'
+						+ '</div>'
+
+						$('body').prepend(txt);
+			}
+		})
+	}
+
+// Fonction pour afficher la liste des intervenant dans message admin
+	function getIntervLst() {
+		$('#getIntervLst').html('');
+		$.ajax({
+			url: './SCRIPT/fonctions.php?action=getInterv',
+			type: 'GET',
+			dataType: 'json',
+			success: (datas) => {
+				for (const data of datas) {
+					let id = data.IDUSR;
+					let pseudo = data.PSEUDO;
+
+					let txt = `<option value="${id}">${pseudo}</option>`
+					$('#getIntervLst').append(txt);
+				}
+			}
+		})
+	}
+
+// Fonction pour envoyer un message à un intervenant dans admin
+	function sendMsgIntervAdmin() {
+		let $msg = $('#msgIntervAdminTxt').val();
+		let $id = $('#getIntervLst').val();
+		$.ajax({
+			url: './SCRIPT/fonctions.php?action=sendMsgIntervAdmin',
+			type: 'POST',
+			data: {
+				action: 'sendMsgIntervAdmin',
+				msg: $msg,
+				id: $id
+			},
+			success: () => {
+				txt = '<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">'
+							+ '<i class="fas fa-thumbs-up pr-2"></i></i>Votre message a bien été envoyé'
+							+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+								+ '<span aria-hidden="true">&times;</span>'
+							+ '</button>'
+						+ '</div>'
+
+						$('body').prepend(txt);
+			}
+		})
+	}
+
 //
 	/***********************************
 	* AFFICHAGE ESPACE ADMINISTRATION *
@@ -722,7 +854,7 @@ let windows_focus = false;
 
 // Gestion boutons changement indentifiants administrateur
 	$('#btnChangeAdmin').on('click', () => {
-		$('.modAdminInfo').toggle();	
+		$('.modAdminInfo').toggle();
 	});
 	
 	$('#submitAdmin').on('click', () => {
@@ -733,7 +865,7 @@ let windows_focus = false;
 	$('#gestionGroupe').on('click', () => {
 		$('.gestGroup').toggle();
 	})
-	
+
 // Gestion boutons gestion des intervenants
 	$('#gestionInterv').on('click', () => {
 		$('.gestInterv').toggle();
@@ -760,9 +892,25 @@ let windows_focus = false;
 	$('#searchBtnMsgAdmin').on('click', () => {
 		searchMsgAdmin();
 	})
+
 // Bouton de recherche dans les messages
 	$('#searchBtnMsgUserAdmin').on('click', () => {
 		searchUserMsgAdmin();
+	})
+
+// Bouton pour envoyer un message à un ou des groupes
+	$('#btnMsgGrpAdmin').on('click', () => {
+		sendMsgGrpAdmin();
+	})
+
+// Bouton pour envoyer un message admin à un stagiaire
+	$('#btnMsgUsrAdmin').on('click', () => {
+		sendMsgUsrAdmin();
+	})
+
+// Bouton pour envoyer un message admin à un intervenant
+	$('#btnMsgIntervAdmin').on('click', () => {
+		sendMsgIntervAdmin();
 	})
 
 
@@ -772,8 +920,9 @@ let windows_focus = false;
 	getGrpUsr();
 	getInterv();
 	getUsr();
-
-
+	getGroupLst();
+	getUsrLst();
+	getIntervLst();
 
 
 /***********

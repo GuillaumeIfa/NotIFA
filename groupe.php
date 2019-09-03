@@ -14,7 +14,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
 		<script src="../SCRIPT/groupe.js"></script>
 	</head>
-	<body class="bg-dark" onload="getIntGrp('<?php echo $idInt ?>')">
+	<body class="bg-dark" >
 		<style>
 			body {
 				min-height: 800px;

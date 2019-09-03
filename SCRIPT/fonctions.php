@@ -296,4 +296,32 @@ include '../configure.php';
 		}
 	}
 
+// Fonction pour envoyer un message à un ou plusieurs groupes À FAIRE
+	if ( isset($_POST['action']) && $_POST['action'] == 'sendMsgGrpAdmin') {
+		$msg = mysqli_escape_string($db_handle, $_POST['msg']);
+		$groupes = $_POST['groupes'];
+	}
+
+// Fonction pour que l'admin envoie un message à un stagiaire
+	if ( isset($_POST['action']) && $_POST['action'] == 'sendMsgUsrAdmin' ) {
+		$msg = mysqli_escape_string($db_handle, $_POST['msg']);
+		$id = $_POST['id'];
+
+		$rqt = 'INSERT INTO MESSAGE (MSG, IDUSR, CIBLE, IDCBL)
+				VALUES ("'.$msg.'", 1, "ADMINISTRATION", "'.$id.'");';
+
+		mysqli_query($db_handle, $rqt);
+	}
+
+// Fonction pour que l'admin envoie un message à un intervenant
+	if ( isset($_POST['action']) && $_POST['action'] == 'sendMsgIntervAdmin' ) {
+		$msg = mysqli_escape_string($db_handle, $_POST['msg']);
+		$id = $_POST['id'];
+
+		$rqt = 'INSERT INTO MESSAGE (MSG, IDUSR, CIBLE, IDCBL)
+				VALUES ("'.$msg.'", 1, "ADMINISTRATION", "'.$id.'");';
+
+		mysqli_query($db_handle, $rqt);
+	}
+
 ?>

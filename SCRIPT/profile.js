@@ -60,7 +60,7 @@ function getIntGrp( id ) {
 				let idGrp = data.IDGRP;
 				let id = data.IDUSR;
 				let nom = data.NOMGRP;
-				let txt = `<li class="list-group-item" value="${id}">${nom}</li>`
+				let txt = `<li class="list-group-item text-dark" value="${id}">${nom}</li>`
 				$('#grpInt').append( txt )
 			}
 		}

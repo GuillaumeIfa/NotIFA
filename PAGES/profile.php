@@ -52,7 +52,7 @@
 						
 						<i class="fas fa-at"></i>
 						<label for="email" class="pt-2"><span class="titre">Email</span></label>
-						<input type="text" value="<?php echo $_SESSION['email'] ?>" id="email" required class="form-control">
+						<input type="email" value="<?php echo $_SESSION['email'] ?>" id="email" required class="form-control">
 
 <!-- 						<i class="fas fa-unlock-alt"></i>
 						<label for="mdp" class="pt-2"><span class="titre">Mot de Passe</span></label>

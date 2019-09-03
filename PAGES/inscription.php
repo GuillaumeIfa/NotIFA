@@ -45,7 +45,7 @@
 						
 						<i class="fas fa-at"></i>
 						<label for="email" class="pt-2"><span class="titre">Email</span></label>
-						<input type="text" placeholder="Email" name="email" required class="form-control">
+						<input type="email" placeholder="Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required class="form-control">
 
 						<i class="fas fa-unlock-alt"></i>
 						<label for="mdp1" class="pt-2"><span class="titre">Mot de Passe</span></label>

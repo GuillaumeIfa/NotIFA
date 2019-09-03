@@ -42,6 +42,7 @@ function closeNav() {
 				$('#loader').show();
 				if( datas ) {
 					if ( testerTab.length != datas.length ) {
+						$('#msgFromAdmin').html('');
 						for( data of datas ) {
 							$('#msgFromAdmin').prepend(
 								`<div class="bg-dark border border-light text-light list-group-item list-group-item-action mb-2">

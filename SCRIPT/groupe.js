@@ -1,10 +1,41 @@
+// Fonctions gestion menu
+	function openNav() {
+		document.getElementById("myNav").style.width = "100%"
+	}
+
+	function closeNav() {
+		document.getElementById("myNav").style.width = "0%"
+	}
+
+// Fonction pour afficher les groupes d'un intervenant
+	function getIntGrp( id ) { 
+		$.ajax({
+			url: '../SCRIPT/fonctions.php?action=getIntervGroup',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				action: 'getIntervGroup',
+				id: id
+			},
+			success: (datas) => {
+				for (const data of datas) {
+					let idGrp = data.IDGRP;
+					let id = data.IDUSR;
+					let nom = data.NOMGRP;
+					let txt = `<option value="${idGrp}">${nom}</option>`
+					$('#grpInt').append( txt )
+				}
+			}
+		})
+	}
+
 $(function() {
 
 let stat = false
 let testerTab = new Array()
 var itv
 var window_focus = true
-var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform); // Vérification si c'est un appareil iOs
 //var sound = 'plop'
 
 $.ajaxSetup({ cache: false });
@@ -17,7 +48,6 @@ $.ajaxSetup({ cache: false });
 			window_focus = false;
 		})
 
-
 // Partie gestion du son
 	// function loadSound() {
 	// 	createjs.Sound.registerSound('../plop.ogg', sound);
@@ -26,15 +56,6 @@ $.ajaxSetup({ cache: false });
 	// function playSound() {
 	// 	createjs.Sound.play(sound);
 	// }
-
-// Fonctions gestion menu
-	function openNav() {
-		document.getElementById("myNav").style.width = "100%"
-	}
-
-	function closeNav() {
-		document.getElementById("myNav").style.width = "0%"
-	}
 
 // Switch connecté/déconnecté
 	$('#customSwitch1').on('click', function() {
@@ -105,7 +126,6 @@ $.ajaxSetup({ cache: false });
 			data: { idGrp: idGrp },
 			success: function( datas ) {
 					$('#messages').html('')
-					console.log( data )
 					if ( !datas ) {
 						$('#messages').append(`<h3>Vous n'avez pas encore de discuté avec ce groupe</h3>`)
 					} else {
@@ -132,7 +152,6 @@ $.ajaxSetup({ cache: false });
 
 // Fonction qui affiche les messages
 	function getMessage() {
-    console.log( window_focus );
 		$.ajax({
 			url: '../SCRIPT/groupeFonctions.php?action=getMessage',
 			type: 'GET',
@@ -249,28 +268,6 @@ $.ajaxSetup({ cache: false });
 		getMsgUsr( id )
 	})
 
-// Fonction pour afficher les groupes d'un intervenant
-	function getIntGrp( id ) { 
-		$.ajax({
-			url: '../SCRIPT/fonctions.php?action=getIntervGroup',
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				action: 'getIntervGroup',
-				id: id
-			},
-			success: (datas) => {
-				for (const data of datas) {
-					let idGrp = data.IDGRP;
-					let id = data.IDUSR;
-					let nom = data.NOMGRP;
-					let txt = `<option value="${idGrp}">${nom}</option>`
-					$('#grpInt').append( txt )
-				}
-			}
-		})
-	}
-
 // Notifications Navigateur
 	if ( !iOS ) {
 		Notification.requestPermission(function() {
@@ -294,6 +291,7 @@ $.ajaxSetup({ cache: false });
 	getUsers()
 	getMessage()
 	itv = setInterval(getMessage, 1000)
+
 })
 
 
